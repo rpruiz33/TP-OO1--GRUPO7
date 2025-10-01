@@ -3,19 +3,30 @@ import java.time.LocalDate;
 
 
 public class Partido {
+private int idPartido;
+
 private LocalDate Fecha;
 private String Estadio;
 private Equipo EquipoLocal ;
 private Equipo EquipoVisitante;
 
+public int getIdPartido() {
+	return idPartido;
+}
 
-public Partido(LocalDate fecha, String estadio, Equipo equipoLocal, Equipo equipoVisitante) {
+public void setIdPartido(int idPartido) {
+	this.idPartido = idPartido;
+}
+
+
+
+public Partido(int idPartido, LocalDate fecha, String estadio, Equipo equipoLocal, Equipo equipoVisitante) {
 	super();
-	this.Fecha = fecha;
-	this.Estadio = estadio;
-	this.EquipoLocal = equipoLocal;
-	this.EquipoVisitante = equipoVisitante;
-	
+	this.idPartido = idPartido;
+	Fecha = fecha;
+	Estadio = estadio;
+	EquipoLocal = equipoLocal;
+	EquipoVisitante = equipoVisitante;
 }
 
 public LocalDate getFecha() {

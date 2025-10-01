@@ -2,13 +2,22 @@ package modelo;
 // Agrege clase Estadisticas que no esta en el UML. avisarle a roberto.
 
 public class Estadistica {
+	private int idEstadisticaM;
+	private Partido partido;
     private Jugador jugador;
-
+    private int  idEstadistica;
     private int goles;
     private int asistencias;
     private int minutosJugados;
     
 
+    public int getIdEstadistica() {
+		return idEstadistica;
+	}
+
+	public void setIdEstadistica(int idEstadistica) {
+		this.idEstadistica = idEstadistica;
+	}
 
 	public Jugador getJugador() {
 		return jugador;
@@ -43,24 +52,21 @@ public class Estadistica {
 		this.minutosJugados = minutosJugados;
 	}
 
-	public Estadistica(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+	public Estadistica(int idEstadisticaM, Partido partido, Jugador jugador, int idEstadistica, int goles,
+			int asistencias, int minutosJugados) {
 		super();
+		this.idEstadisticaM = idEstadisticaM;
+		this.partido = partido;
 		this.jugador = jugador;
-	
+		this.idEstadistica = idEstadistica;
 		this.goles = goles;
 		this.asistencias = asistencias;
 		this.minutosJugados = minutosJugados;
 	}
 
-	@Override
-	public String toString() {
-		return "Estadisticas [jugador=" + jugador + ", goles=" + goles + ", asistencias=" + asistencias
-				+ ", minutosJugados=" + minutosJugados + "]";
-	}
-	
-	
-	
-
-	
-    
 }
+
+
+
+
+    
