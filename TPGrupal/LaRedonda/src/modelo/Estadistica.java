@@ -1,7 +1,7 @@
 package modelo;
 // Agrege clase Estadisticas que no esta en el UML. avisarle a roberto.
 
-public class Estadisticas {
+public class Estadistica {
     private Jugador jugador;
 
     private int goles;
@@ -43,7 +43,7 @@ public class Estadisticas {
 		this.minutosJugados = minutosJugados;
 	}
 
-	public Estadisticas(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+	public Estadistica(Jugador jugador, int goles, int asistencias, int minutosJugados) {
 		super();
 		this.jugador = jugador;
 	

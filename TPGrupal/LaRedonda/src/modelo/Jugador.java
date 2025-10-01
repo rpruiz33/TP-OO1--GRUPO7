@@ -6,11 +6,11 @@ public class Jugador extends Persona {
 private float peso;
 private float estatura;
 private String posicion;
-private List<Estadisticas>lstEstadistica;
+private List<Estadistica>lstEstadistica;
 
 
 public Jugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento, float peso, float estatura,
-		String posicion, List<Estadisticas> lstEstadistica) {
+		String posicion, List<Estadistica> lstEstadistica) {
 	super(nombre, apellido, dni, fechaNacimiento);
 	this.peso = peso;
 	this.estatura = estatura;
@@ -49,12 +49,12 @@ public void setPosicion(String posicion) {
 }
 
 
-public List<Estadisticas> getLstEstadistica() {
+public List<Estadistica> getLstEstadistica() {
 	return lstEstadistica;
 }
 
 
-public void setLstEstadistica(List<Estadisticas> lstEstadistica) {
+public void setLstEstadistica(List<Estadistica> lstEstadistica) {
 	this.lstEstadistica = lstEstadistica;
 }
 

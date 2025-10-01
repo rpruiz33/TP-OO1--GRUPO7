@@ -13,9 +13,9 @@ public class Test {
         Entrenador entrenador1 = new Entrenador("Scaloni", "Lionel", 11111111, LocalDate.of(1980, 5, 20), "Ofensiva");
         Entrenador entrenador2 = new Entrenador("Ancelotti", "Carlo", 22222222, LocalDate.of(1975, 3, 10), "Defensiva");
 
-        List<Estadisticas> listaEstadistica1=new  ArrayList<Estadisticas>();
-        List<Estadisticas> listaEstadistica2=new  ArrayList<Estadisticas>();
-        List<Estadisticas> listaEstadistica3=new  ArrayList<Estadisticas>();
+        List<Estadistica> listaEstadistica1=new  ArrayList<Estadistica>();
+        List<Estadistica> listaEstadistica2=new  ArrayList<Estadistica>();
+        List<Estadistica> listaEstadistica3=new  ArrayList<Estadistica>();
 
         
         
@@ -24,18 +24,18 @@ public class Test {
         Jugador jugador3 = new Jugador("Neymar", "Neymar", 55555555, LocalDate.of(1998, 2, 12), 1.70f, 60, "Delantero",listaEstadistica3);
  
 
-        Estadisticas estadisticaA1=new Estadisticas(jugador1, 7,7,33);
-        Estadisticas estadisticaA2=new Estadisticas(jugador1 ,7,7,33); 
-        Estadisticas estadisticaA3=new Estadisticas(jugador1, 7,7,33);
+        Estadistica estadisticaA1=new Estadistica(jugador1, 7,7,33);
+        Estadistica estadisticaA2=new Estadistica(jugador1 ,7,7,33); 
+        Estadistica estadisticaA3=new Estadistica(jugador1, 7,7,33);
         
         
-        Estadisticas estadisticaB1=new Estadisticas(jugador2, 7,7,33);
-        Estadisticas estadisticaB2=new Estadisticas(jugador2 ,7,7,33); 
-        Estadisticas estadisticaB3=new Estadisticas(jugador2, 7,7,33);
+        Estadistica estadisticaB1=new Estadistica(jugador2, 7,7,33);
+        Estadistica estadisticaB2=new Estadistica(jugador2 ,7,7,33); 
+        Estadistica estadisticaB3=new Estadistica(jugador2, 7,7,33);
         
-        Estadisticas estadisticaC1=new Estadisticas(jugador3, 7,7,33);
-        Estadisticas estadisticaC2=new Estadisticas(jugador3 ,7,7,33); 
-        Estadisticas estadisticaC3=new Estadisticas(jugador3, 7,7,33);
+        Estadistica estadisticaC1=new Estadistica(jugador3, 7,7,33);
+        Estadistica estadisticaC2=new Estadistica(jugador3 ,7,7,33); 
+        Estadistica estadisticaC3=new Estadistica(jugador3, 7,7,33);
         
         listaEstadistica1.add(estadisticaA1);
         listaEstadistica1.add(estadisticaA2);
