@@ -1,79 +1,12 @@
 package modelo;
 // Agrege clase Estadisticas que no esta en el UML. avisarle a roberto.
 
+import java.util.List;
+
 public class Estadistica {
-	private int idEstadistica;
-	private Partido partido;
-    private Jugador jugador;
-    private int goles;
-    private int asistencias;
-    private int minutosJugados;
+	private List<EstadisticaJugador> listaPartidos;
+
+	private List<EstadisticaPartido>listaEstadisticaPartido;
+	
     
-
-    public Partido getPartido() {
-		return partido;
-	}
-
-	public void setPartido(Partido partido) {
-		this.partido = partido;
-	}
-
-	public int getIdEstadistica() {
-		return idEstadistica;
-	}
-
-	public void setIdEstadistica(int idEstadistica) {
-		this.idEstadistica = idEstadistica;
-	}
-
-	public Jugador getJugador() {
-		return jugador;
-	}
-
-	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
-	}
-
-
-	public int getGoles() {
-		return goles;
-	}
-
-	public void setGoles(int goles) {
-		this.goles = goles;
-	}
-
-	public int getAsistencias() {
-		return asistencias;
-	}
-
-	public void setAsistencias(int asistencias) {
-		this.asistencias = asistencias;
-	}
-
-	public int getMinutosJugados() {
-		return minutosJugados;
-	}
-
-	public void setMinutosJugados(int minutosJugados) {
-		this.minutosJugados = minutosJugados;
-	}
-
-	public Estadistica(int idEstadisticaM, Partido partido, Jugador jugador, int idEstadistica, int goles,
-			int asistencias, int minutosJugados) {
-		super();
-
-		this.partido = partido;
-		this.jugador = jugador;
-		this.idEstadistica = idEstadistica;
-		this.goles = goles;
-		this.asistencias = asistencias;
-		this.minutosJugados = minutosJugados;
-	}
-
 }
-
-
-
-
-    
