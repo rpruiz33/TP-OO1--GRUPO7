@@ -2,16 +2,23 @@ package modelo;
 // Agrege clase Estadisticas que no esta en el UML. avisarle a roberto.
 
 public class Estadistica {
-	private int idEstadisticaM;
+	private int idEstadistica;
 	private Partido partido;
     private Jugador jugador;
-    private int  idEstadistica;
     private int goles;
     private int asistencias;
     private int minutosJugados;
     
 
-    public int getIdEstadistica() {
+    public Partido getPartido() {
+		return partido;
+	}
+
+	public void setPartido(Partido partido) {
+		this.partido = partido;
+	}
+
+	public int getIdEstadistica() {
 		return idEstadistica;
 	}
 
@@ -55,7 +62,7 @@ public class Estadistica {
 	public Estadistica(int idEstadisticaM, Partido partido, Jugador jugador, int idEstadistica, int goles,
 			int asistencias, int minutosJugados) {
 		super();
-		this.idEstadisticaM = idEstadisticaM;
+
 		this.partido = partido;
 		this.jugador = jugador;
 		this.idEstadistica = idEstadistica;

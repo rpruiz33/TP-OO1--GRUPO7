@@ -7,7 +7,7 @@ import modelo.*;
 public class Test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
       
 		// Entrenadores
         Entrenador entrenador1 = new Entrenador("Scaloni", "Lionel", 11111111, LocalDate.of(1980, 5, 20), "Ofensiva");
@@ -76,7 +76,7 @@ public class Test {
       System.out.println(mundial.getLstPartidos().toString());
       System.out.println(jugador1.getLstEstadistica().toString());
 	
-        
+        */
        
        
     
