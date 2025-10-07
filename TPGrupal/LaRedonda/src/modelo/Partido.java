@@ -3,72 +3,58 @@ import java.time.LocalDate;
 
 
 public class Partido {
-private int idPartido;
-
-private LocalDate Fecha;
+private int id;
 private String Estadio;
 private Equipo EquipoLocal ;
 private Equipo EquipoVisitante;
-
-public int getIdPartido() {
-	return idPartido;
+private Partido	ListParticipacionPartido;
+private LocalDate FechaPartido;
+public int getId() {
+	return id;
 }
-
-public void setIdPartido(int idPartido) {
-	this.idPartido = idPartido;
+public void setId(int id) {
+	this.id = id;
 }
-
-
-
-public Partido(int idPartido, LocalDate fecha, String estadio, Equipo equipoLocal, Equipo equipoVisitante) {
-	super();
-	this.idPartido = idPartido;
-	Fecha = fecha;
-	Estadio = estadio;
-	EquipoLocal = equipoLocal;
-	EquipoVisitante = equipoVisitante;
-}
-
-public LocalDate getFecha() {
-	return Fecha;
-}
-
-public void setFecha(LocalDate fecha) {
-	Fecha = fecha;
-}
-
 public String getEstadio() {
 	return Estadio;
 }
-
 public void setEstadio(String estadio) {
 	Estadio = estadio;
 }
-
 public Equipo getEquipoLocal() {
 	return EquipoLocal;
 }
-
 public void setEquipoLocal(Equipo equipoLocal) {
 	EquipoLocal = equipoLocal;
 }
-
 public Equipo getEquipoVisitante() {
 	return EquipoVisitante;
 }
-
 public void setEquipoVisitante(Equipo equipoVisitante) {
 	EquipoVisitante = equipoVisitante;
 }
-
-@Override
-public String toString() {
-	return "Partido [Fecha=" + Fecha + ", Estadio=" + Estadio + ", EquipoLocal=" + EquipoLocal + ", EquipoVisitante="
-			+ EquipoVisitante + "]";
+public Partido getListParticipacionPartido() {
+	return ListParticipacionPartido;
 }
-
-
-
+public void setListParticipacionPartido(Partido listParticipacionPartido) {
+	ListParticipacionPartido = listParticipacionPartido;
+}
+public LocalDate getFechaPartido() {
+	return FechaPartido;
+}
+public void setFechaPartido(LocalDate fechaPartido) {
+	FechaPartido = fechaPartido;
+}
+public Partido(int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante, Partido listParticipacionPartido,
+		LocalDate fechaPartido) {
+	super();
+	this.id = id;
+	Estadio = estadio;
+	EquipoLocal = equipoLocal;
+	EquipoVisitante = equipoVisitante;
+	ListParticipacionPartido = listParticipacionPartido;
+	FechaPartido = fechaPartido;
+}
 
 
 

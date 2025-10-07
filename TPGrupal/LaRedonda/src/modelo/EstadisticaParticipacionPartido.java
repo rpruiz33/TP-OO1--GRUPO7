@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class EstadisticaPartido {
+public class EstadisticaParticipacionPartido {
 private Equipo equipoLocal;
 private String Estadio;
 private LocalDate fechaPartido;
@@ -31,7 +31,7 @@ public Equipo getEqupoVisitante() {
 public void setEqupoVisitante(Equipo equpoVisitante) {
 	this.equpoVisitante = equpoVisitante;
 }
-public EstadisticaPartido(Equipo equipoLocal, String estadio, LocalDate fechaPartido, Equipo equpoVisitante) {
+public EstadisticaParticipacionPartido(Equipo equipoLocal, String estadio, LocalDate fechaPartido, Equipo equpoVisitante) {
 	super();
 	this.equipoLocal = equipoLocal;
 	Estadio = estadio;

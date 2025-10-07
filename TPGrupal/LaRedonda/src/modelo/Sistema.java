@@ -5,182 +5,198 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sistema {
-List<Partido>lstPartidos;
-List<Jugador>lstJugadores;
-List<Estadistica> lstEstadisticas;
-public List<Partido> getLstPartidos() {
-	return lstPartidos;
-}
-public void setLstPartidos(List<Partido> lstPartidos) {
-	this.lstPartidos = lstPartidos;
-}
-public List<Jugador> getLstJugadores() {
-	return lstJugadores;
-}
-public void setLstJugadores(List<Jugador> lstJugadores) {
-	this.lstJugadores = lstJugadores;
-}
-public List<Estadistica> getLstEstadisticas() {
-	return lstEstadisticas;
-}
-public void setLstEstadisticas(List<Estadistica> lstEstadisticas) {
-	this.lstEstadisticas = lstEstadisticas;
-}
-public Sistema() {
-	super();
-	this.lstPartidos = new ArrayList<Partido>();
-	this.lstJugadores =  new ArrayList<Jugador>();
-	this.lstEstadisticas =  new ArrayList<Estadistica>();
-}
 
+    private List<Partido> lstPartidos;
+    private List<Jugador> lstJugadores;
 
+    private List<Entrenador> lstEntrenadores;
+    private List<Torneo>lstTorneos;
 
+    public Sistema() {
+        super();
+        this.lstPartidos = new ArrayList<Partido>();
+        this.lstJugadores = new ArrayList<Jugador>();
+        this.lstEntrenadores = new ArrayList<Entrenador>();
+        this.lstTorneos = new ArrayList<Torneo>();
 
+    }
 
-	public boolean agregarPartido(LocalDate fecha, String estadio, Equipo equipoLocal, Equipo equipoVisitante) {
-		Partido p = null;
-		int id = 0;
-		if (lstPartidos.isEmpty()) {
-			id = 1;
-		} 
-		else {
-			id = lstPartidos.get(lstPartidos.size() - 1).getIdPartido() + 1;
-		}
-		p = new Partido(id, fecha,  estadio,  equipoLocal, equipoVisitante);
-		
-		return lstPartidos.add(p);
+    public List<Torneo> getLstTorneos() {
+		return lstTorneos;
 	}
 
-	public Partido traerPartido(int idPartido) {
-		int i = 0;
-		boolean flag = false;
-		Partido aux = null;
-		while (lstPartidos.size() > i && flag != true) {
-			
-			if (lstPartidos.get(i).getIdPartido() == idPartido) {
-				aux = lstPartidos.get(i);
-				flag = true;
-			}
-			i++;
-		}
-		return aux;
+	public void setLstTorneos(List<Torneo> lstTorneos) {
+		this.lstTorneos = lstTorneos;
 	}
 
-	public boolean eliminarPartido(int idPartido) throws Exception {
-		boolean flag = false;
-		Partido aux = null;
-		aux = traerPartido(idPartido);
-		if (aux == null) {
-			throw new Exception("el partido no existe");
-		} 
-		
-		else {
-			flag = lstPartidos.remove(aux);
-		}
-		return flag;
-	}
+	public List<Partido> getLstPartidos() {
+        return lstPartidos;
+    }
 
+    public void setLstPartidos(List<Partido> lstPartidos) {
+        this.lstPartidos = lstPartidos;
+    }
 
-	public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento, int idJugador, float peso,
-			float estatura, String posicion, List<Estadistica> lstEstadistica) {
-		Jugador j = null;
-		
-		int id = 0;
-		
-		if (lstJugadores.isEmpty()) {
-			id = 1;
-		} 
-		else {
-			id = lstJugadores.get(lstJugadores.size() - 1).getIdJugador() + 1;
-		}
-		j = new Jugador( nombre, apellido, dni,  fechaNacimiento, id,  peso,
-				estatura, posicion, null);
-		return lstJugadores.add(j);
-	}
+    public List<Jugador> getLstJugadores() {
+        return lstJugadores;
+    }
 
-	public Jugador traerJugador(int idJugador) {
-		int i = 0;
-		boolean flag = false;
-		Jugador aux = null;
-		while (lstJugadores.size() > i && flag != true) {
-			if (lstJugadores.get(i).getIdJugador() == idJugador) {
-				aux = lstJugadores.get(i);
-				flag = true;
-			}
-			i++;
-		}
-		return aux;
-	}
+    public void setLstJugadores(List<Jugador> lstJugadores) {
+        this.lstJugadores = lstJugadores;
+    }
 
-	public boolean eliminarJugador(int idJugador) throws Exception {
-		boolean flag = false;
-		Jugador aux = null;
-		aux = traerJugador(idJugador);
-		if (aux == null) {
-			throw new Exception("el jugador no existe");
-		} 
-		
-		else {
-			flag = lstJugadores.remove(aux);
-		}
-		return flag;
-	}
+    public List<Entrenador> getLstEntrenadores() {
+        return lstEntrenadores;
+    }
+
+    public void setLstEntrenadores(List<Entrenador> lstEntrenadores) {
+        this.lstEntrenadores = lstEntrenadores;
+    }
 
 
 
-	public boolean agregarEstadistica(int idEstadisticaM, Partido partido, Jugador jugador, int idEstadistica, int goles,
-			int asistencias, int minutosJugados) throws Exception {
-		Estadistica e = null;
-		int id = 0;
-		if (lstEstadisticas.isEmpty()) {
-			id = 1;
-		} 
-		
-		else {
-			id = lstEstadisticas.get(lstEstadisticas.size() - 1).getIdEstadistica() + 1;
-		}
-		partido = traerPartido(partido.getIdPartido());
-		
-		jugador = traerJugador(jugador.getIdJugador());
-		
-		if (partido == null) {
-			throw new Exception("el partido no existe");
-		}
-		if (jugador == null) {
-			throw new Exception("el jugador no existe");
-		}
-		e = new Estadistica(id,  partido,  jugador,  idEstadistica,  goles,
-				 asistencias,  minutosJugados);
-		return lstEstadisticas.add(e);
-	}
+    public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante,
+                                  Partido listParticipacionPartido, LocalDate fechaPartido) {
+        int id = 1;
+        if (!lstPartidos.isEmpty()) {
+            id = lstPartidos.get(lstPartidos.size() - 1).getId() + 1;
+        }
+        Partido p = new Partido(id, estadio, equipoLocal, equipoVisitante, listParticipacionPartido, fechaPartido);
+        return lstPartidos.add(p);
+    }
 
-	public Estadistica traerEstadistica(int idEstadistica) {
-		int i = 0;
-		boolean flag = false;
-		Estadistica aux = null;
-		
-		while (lstEstadisticas.size() > i && flag != true) {
-			
-				if (lstEstadisticas.get(i).getIdEstadistica() == idEstadistica) {
-				aux = lstEstadisticas.get(i);
-				flag = true;
-			}
-			i++;
-		}
-		return aux;
-	}
+    public Partido traerPartido(int idPartido) {
+        int i = 0;
+        boolean encontrado = false;
+        Partido aux = null;
+        while (i < lstPartidos.size() && !encontrado) {
+            if (lstPartidos.get(i).getId() == idPartido) {
+                aux = lstPartidos.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
 
-	public boolean eliminarEstadistica(int idEstadistica) throws Exception {
-		boolean flag = false;
-		Estadistica aux = null;
-		aux = traerEstadistica(idEstadistica);
-		
-		if (aux == null) {
-			throw new Exception("la estadistica no existe");
-		} 
-		else {
-			flag = lstEstadisticas.remove(aux);
-		}
-		return flag;
-	}
+    public boolean eliminarPartido(int idPartido) throws Exception {
+        Partido aux = null;
+        int i = 0;
+        boolean encontrado = false;
+        while (i < lstPartidos.size() && !encontrado) {
+            if (lstPartidos.get(i).getId() == idPartido) {
+                aux = lstPartidos.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        if (aux == null) throw new Exception("El partido no existe");
+        return lstPartidos.remove(aux);
+    }
+
+
+
+    public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
+                                  float peso, float estatura, String posicion, int numCamiseta) {
+        int id = 1;
+        if (!lstJugadores.isEmpty()) {
+            id = lstJugadores.get(lstJugadores.size() - 1).getId() + 1;
+        }
+        Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta);
+        return lstJugadores.add(j);
+    }
+
+    public Jugador traerJugador(int idJugador) {
+        int i = 0;
+        boolean encontrado = false;
+        Jugador aux = null;
+        while (i < lstJugadores.size() && !encontrado) {
+            if (lstJugadores.get(i).getId() == idJugador) {
+                aux = lstJugadores.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
+
+    public boolean eliminarJugador(int idJugador) throws Exception {
+        Jugador aux = null;
+        int i = 0;
+        boolean encontrado = false;
+        while (i < lstJugadores.size() && !encontrado) {
+            if (lstJugadores.get(i).getId() == idJugador) {
+                aux = lstJugadores.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        if (aux == null) throw new Exception("El jugador no existe");
+        return lstJugadores.remove(aux);
+    }
+
+
+
+    public boolean agregarEntrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
+                                     String estrategiaFavorita) {
+        int id = 1;
+        if (!lstEntrenadores.isEmpty()) {
+            id = lstEntrenadores.get(lstEntrenadores.size() - 1).getId() + 1;
+        }
+        Entrenador e = new Entrenador(id ,nombre,  apellido, dni,  fechaNacimiento,  estrategiaFavorita);
+        return lstEntrenadores.add(e);
+    }
+
+    public Entrenador traerEntrenador(int idEntrenador) {
+        int i = 0;
+        boolean encontrado = false;
+        Entrenador aux = null;
+        while (i < lstEntrenadores.size() && !encontrado) {
+            if (lstEntrenadores.get(i).getId() == idEntrenador) {
+                aux = lstEntrenadores.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
+
+    public boolean eliminarEntrenador(int idEntrenador) throws Exception {
+        Entrenador aux = traerEntrenador(idEntrenador);
+        if (aux == null) throw new Exception("El entrenador no existe");
+        return lstEntrenadores.remove(aux);
+    }
+
+
+    public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion) {
+        int id1 = 1;
+        if (!lstTorneos.isEmpty()) {
+            id1 = lstTorneos.get(lstTorneos.size() - 1).getId() + 1;
+        }
+        Torneo t = new Torneo( id1, nombre, temporada, lstEquipos, lstPartidos,
+    			fechaDeInicio, fechaDeFinalizacion);
+        return lstTorneos.add(t);
+    }
+
+    public Torneo traerTorneo(int idTorneo) {
+        int i = 0;
+        boolean encontrado = false;
+        Torneo aux = null;
+        while (i < lstTorneos.size() && !encontrado) {
+            if (lstTorneos.get(i).getId() == idTorneo) {
+                aux = lstTorneos.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
+
+    public boolean eliminarTorneo(int idTorneo) throws Exception {
+        Torneo aux = traerTorneo(idTorneo);
+        if (aux == null) throw new Exception("El torneo no existe");
+        return lstTorneos.remove(aux);
+    }
+
 }

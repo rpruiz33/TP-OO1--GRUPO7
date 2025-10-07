@@ -4,12 +4,21 @@ import java.time.LocalDate;
 
 public class Entrenador extends Persona {
 
-	
+	private int id ;
 	private String EstrategiaFavorita;
 
-	public Entrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento, String estrategiaFavorita) {
+	public Entrenador(int id ,String nombre, String apellido, int dni, LocalDate fechaNacimiento, String estrategiaFavorita) {
 		super(nombre, apellido, dni, fechaNacimiento);
 		EstrategiaFavorita = estrategiaFavorita;
+		this.id=id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getEstrategiaFavorita() {
@@ -22,8 +31,14 @@ public class Entrenador extends Persona {
 
 	@Override
 	public String toString() {
-		return "Entrenador [EstrategiaFavorita=" + EstrategiaFavorita + "]";
+		return "Entrenador [id=" + id + ", EstrategiaFavorita=" + EstrategiaFavorita + ", getId()=" + getId()
+				+ ", getEstrategiaFavorita()=" + getEstrategiaFavorita() + ", getNombre()=" + getNombre()
+				+ ", getApellido()=" + getApellido() + ", getDni()=" + getDni() + ", getFechaNacimiento()="
+				+ getFechaNacimiento() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
+
+
 	
 	
 }

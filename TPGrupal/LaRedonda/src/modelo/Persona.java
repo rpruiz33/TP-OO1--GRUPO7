@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 // esto es para que  Jugadores y Entrenadores Hereden los datos necesarios
 
-public class Persona {
+public abstract class Persona {
 private String Nombre;
 private String Apellido;
 private int Dni; 
