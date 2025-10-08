@@ -53,15 +53,19 @@ public class Sistema {
         this.lstEntrenadores = lstEntrenadores;
     }
 
+/*1. Generar todos los métodos para que se puedan agregar elementos a todas las
+listas.
+2. Generar los métodos eliminar solo si necesarios (física o lógica) elementos a
+todas las listas por regla de negocio. Por ejemplo baja a un jugador del equipo.
+3. Generar todos los métodos traer por atributo único (o id)*/
 
-
-    public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante,
-                                  Partido listParticipacionPartido, LocalDate fechaPartido) {
+    public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante,LocalDate fechaPartido) {
         int id = 1;
         if (!lstPartidos.isEmpty()) {
             id = lstPartidos.get(lstPartidos.size() - 1).getId() + 1;
         }
-        Partido p = new Partido(id, estadio, equipoLocal, equipoVisitante, listParticipacionPartido, fechaPartido);
+        
+        Partido p = new Partido (id, estadio, equipoLocal, equipoVisitante, fechaPartido);
         return lstPartidos.add(p);
     }
 
@@ -69,8 +73,10 @@ public class Sistema {
         int i = 0;
         boolean encontrado = false;
         Partido aux = null;
-        while (i < lstPartidos.size() && !encontrado) {
-            if (lstPartidos.get(i).getId() == idPartido) {
+        while (i < lstPartidos.size() && !encontrado)
+        {
+            if (lstPartidos.get(i).getId() == idPartido) 
+            {
                 aux = lstPartidos.get(i);
                 encontrado = true;
             }
@@ -84,7 +90,8 @@ public class Sistema {
         int i = 0;
         boolean encontrado = false;
         while (i < lstPartidos.size() && !encontrado) {
-            if (lstPartidos.get(i).getId() == idPartido) {
+            	if (lstPartidos.get(i).getId() == idPartido)
+            {
                 aux = lstPartidos.get(i);
                 encontrado = true;
             }
@@ -102,7 +109,10 @@ public class Sistema {
         if (!lstJugadores.isEmpty()) {
             id = lstJugadores.get(lstJugadores.size() - 1).getId() + 1;
         }
+        
         Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta);
+        
+        
         return lstJugadores.add(j);
     }
 
@@ -111,7 +121,9 @@ public class Sistema {
         boolean encontrado = false;
         Jugador aux = null;
         while (i < lstJugadores.size() && !encontrado) {
-            if (lstJugadores.get(i).getId() == idJugador) {
+            if (lstJugadores.get(i).getId() == idJugador)
+            
+            {
                 aux = lstJugadores.get(i);
                 encontrado = true;
             }
@@ -123,7 +135,10 @@ public class Sistema {
     public boolean eliminarJugador(int idJugador) throws Exception {
         Jugador aux = null;
         int i = 0;
+        
         boolean encontrado = false;
+        
+        
         while (i < lstJugadores.size() && !encontrado) {
             if (lstJugadores.get(i).getId() == idJugador) {
                 aux = lstJugadores.get(i);
@@ -151,7 +166,8 @@ public class Sistema {
         int i = 0;
         boolean encontrado = false;
         Entrenador aux = null;
-        while (i < lstEntrenadores.size() && !encontrado) {
+        while (i < lstEntrenadores.size() && !encontrado) 
+        {
             if (lstEntrenadores.get(i).getId() == idEntrenador) {
                 aux = lstEntrenadores.get(i);
                 encontrado = true;
@@ -163,7 +179,10 @@ public class Sistema {
 
     public boolean eliminarEntrenador(int idEntrenador) throws Exception {
         Entrenador aux = traerEntrenador(idEntrenador);
-        if (aux == null) throw new Exception("El entrenador no existe");
+        if (aux == null) {
+        	throw new Exception("El entrenador no existe");
+        }
+        
         return lstEntrenadores.remove(aux);
     }
 
@@ -174,8 +193,9 @@ public class Sistema {
         if (!lstTorneos.isEmpty()) {
             id1 = lstTorneos.get(lstTorneos.size() - 1).getId() + 1;
         }
-        Torneo t = new Torneo( id1, nombre, temporada, lstEquipos, lstPartidos,
-    			fechaDeInicio, fechaDeFinalizacion);
+        
+        Torneo t = new Torneo( id1, nombre, temporada, lstEquipos, lstPartidos,fechaDeInicio, fechaDeFinalizacion);
+        
         return lstTorneos.add(t);
     }
 
@@ -195,8 +215,53 @@ public class Sistema {
 
     public boolean eliminarTorneo(int idTorneo) throws Exception {
         Torneo aux = traerTorneo(idTorneo);
-        if (aux == null) throw new Exception("El torneo no existe");
-        return lstTorneos.remove(aux);
+        if (aux == null) 
+    {throw new Exception("El torneo no existe");
+        
     }
+        return lstTorneos.remove(aux);
+}
+    /*4. Traer para un torneo y un número de fecha, la lista de los equipos ganadores
+utilizando una clase (Ganador, no se persiste es solo para generar reporte) con
+fecha, el equipo ganador, cantidad de goles*/
+
+    public List<Ganador> traerTorneoPorFecha(int idTorneo, LocalDate fecha,Equipo equipoGanador) {
+    	Torneo taux=null;
+    
+
+    	
+    	boolean flag=false;
+    	taux=this.traerTorneo(idTorneo);
+    	
+    	List<Ganador>ganadores=new ArrayList<>();
+    	
+    	for (int j=0;j<taux.getLstPartidos().size();j++) {
+  
+
+
+            if (taux.getLstPartidos().get(j).getFechaPartido().equals(fecha)) {
+    		Equipo local= taux.getLstPartidos().get(j).getEquipoLocal();
+    		Equipo visitante=taux.getLstPartidos().get(j).getEquipoVisitante();
+    		int golesLOcal=taux.getLstPartidos().get(j).getListParticipacionPartido().get(0).getGolesMetio();
+    		int golesvsi=taux.getLstPartidos().get(j).getListParticipacionPartido().get(1).getGolesMetio();
+    		
+    	
+    	 if (golesLOcal > golesvsi) {
+             ganadores.add(new Ganador(fecha, local, golesLOcal));
+         } else if (golesvsi > golesLOcal) {
+             ganadores.add(new Ganador(fecha, visitante, golesvsi));
+         }
+  
+    	}
+    	
+    	
+     
+    }
+
+    	return ganadores;
+    }
+
+
+
 
 }
