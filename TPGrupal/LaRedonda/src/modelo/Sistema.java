@@ -262,6 +262,22 @@ fecha, el equipo ganador, cantidad de goles*/
     }
 
 
+/* Búsqueda de entrenadores: Crear un método que, dada una táctica preferida,
+devuelva una lista de todos los entrenadores que la utilicen*/
 
+    public List<Entrenador> busquedaEntrenadoresPorTactica(String tacticaPreferida){
+    	List<Entrenador>listAux=new ArrayList<Entrenador>();
+    	for(int g=0;g<lstEntrenadores.size();g++) {
+    		if(lstEntrenadores.get(i).getEstrategiaFavorita().equals(tacticaPreferida)) {
+    			listAux.add(lstEntrenadores.get(g));
+    		}
+    	}
+    	
+    	
+    	return listAux;
+    	
+    	
+    }
+    
 
 }
