@@ -268,11 +268,11 @@ devuelva una lista de todos los entrenadores que la utilicen*/
     public List<Entrenador> busquedaEntrenadoresPorTactica(String tacticaPreferida){
     	List<Entrenador>listAux=new ArrayList<Entrenador>();
     	for(int g=0;g<lstEntrenadores.size();g++) {
-<<<<<<< HEAD
+
+
+
     		if(lstEntrenadores.get(g).getEstrategiaFavorita().equals(tacticaPreferida)) {
-=======
-    		if(lstEntrenadores.get(i).getEstrategiaFavorita().equals(tacticaPreferida)) {
->>>>>>> 38cc4c6c6734335a9a45f99147bccf61acedd29c
+
     			listAux.add(lstEntrenadores.get(g));
     		}
     	}
@@ -282,13 +282,12 @@ devuelva una lista de todos los entrenadores que la utilicen*/
     	
     	
     }
-    
-<<<<<<< HEAD
-    
-    
-    
-}
-=======
 
+    
+    
+    
 }
->>>>>>> 38cc4c6c6734335a9a45f99147bccf61acedd29c
+
+
+
+
