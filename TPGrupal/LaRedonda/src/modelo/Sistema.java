@@ -282,7 +282,28 @@ devuelva una lista de todos los entrenadores que la utilicen*/
     	
     	
     }
+/*Búsqueda de jugadores por fecha de nacimiento: Implementar una método que
+retorne una lista de jugadores nacidos entre dos fechas dadas.*/
+    
 
+        public List<Jugador> jugadoresFechaNacimento(LocalDate fecha1, LocalDate fecha2){
+        	List<Jugador>listAux=new ArrayList<Jugador>();
+        	for(int g=0;g<lstJugadores.size();g++) {
+
+
+
+        		if(!lstJugadores.get(g).getFechaNacimiento().isBefore(fecha1)&&lstJugadores.get(g).getFechaNacimiento().isAfter(fecha2)) {
+
+        			listAux.add(lstJugadores.get(g));
+        		}
+        	}
+        	
+        	
+        	return listAux;
+        	
+        	
+        }
+    
     
     
     
