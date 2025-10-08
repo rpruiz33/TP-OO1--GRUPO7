@@ -90,5 +90,87 @@ public class Torneo {
 				+ fechaDeFinalizacion + "]";
 	}
    
+    /*Búsqueda de equipos por fecha de fundación: Desarrollar un método que devuelva
+una lista de equipos fundados antes de una fecha específica.*/
+	
+    public List<Equipo> jugadoresFechaNacimento(LocalDate fecha1){
+    	List<Equipo>listAux=new ArrayList<Equipo>();
+    	for(int g=0;g<LstEquipos.size();g++) {
+
+
+
+    		if(LstEquipos.get(g).getFechaFundacion().isBefore(fecha1)) {
+
+    			listAux.add(LstEquipos.get(g));
+    		}
+    	}
+    	
+    	
+    	return listAux;
+    	
+    	
+    }
+
+    /*Cálculo de altura promedio de equipo: Escribir un método que calcule y retorne la
+    altura promedio de un equipo.*/
+    
+    public float alturaPromedio(Equipo e) {
+    	float prom=0;
+    	int cont=0;	
+    		
+    		for(int h=0;h<e.getLstJugador().size();h++) {
+    			
+    			if(e.getLstJugador().get(h).getEstatura()>0) {
+    				prom+=e.getLstJugador().get(h).getEstatura();
+    				
+    			cont++;
+    				
+    			
+    		}
+    		
+    	}
+    	
+    	prom=prom/(float)cont;
+    	
+    	return prom;
+    }
+
+    
+   
+    /*Identificación de equipo con mayor altura promedio: Crear un método que devuelva
+ el objeto Equipo con la mayor altura promedio en el torneo.*/
+     public Equipo alturaPromedioMayr(Torneo t) {
+     	 List<Float>j=new ArrayList<Float>();
+     	int cont=0;	
+     		float prom=0;
+     		float mayor=0;
+     		Equipo e=null;
+     		for(int h=0;h<t.getLstEquipos().size();h++) {
+     			for(int i=0;i<t.getLstEquipos().get(h).getLstJugador().size();i++) {
+     			if(t.getLstEquipos().get(h).getLstJugador().get(i).getEstatura()>0) {
+     				prom+=t.getLstEquipos().get(h).getLstJugador().get(i).getEstatura();
+     				
+     			cont++;
+     				
+     			}
+     			prom=prom/(float)cont;
+     			
+     			
+     		}
+     			
+     		
+     			j.add(prom);
+     			if(j.get(h)>mayor) {
+     				mayor=j.get(h);
+     				e=t.getLstEquipos().get(h);
+     			}
+     			
+     		
+     	}
+     	
+     
+     	return e;
+     }
+    
 	
 }
