@@ -53,49 +53,29 @@ public void setEquipoLocal(Equipo equipoLocal) {
 	EquipoLocal = equipoLocal;
 }
 
-
-
-
 public Equipo getEquipoVisitante() {
 	return EquipoVisitante;
 }
-
-
-
 
 public void setEquipoVisitante(Equipo equipoVisitante) {
 	EquipoVisitante = equipoVisitante;
 }
 
-
-
-
 public ArrayList<EstadisticaParticipacionPartido> getListParticipacionPartido() {
 	return listParticipacionPartido;
 }
-
-
-
 
 public void setListParticipacionPartido(ArrayList<EstadisticaParticipacionPartido> listParticipacionPartido) {
 	this.listParticipacionPartido = listParticipacionPartido;
 }
 
-
-
-
 public LocalDate getFechaPartido() {
 	return FechaPartido;
 }
 
-
-
-
 public void setFechaPartido(LocalDate fechaPartido) {
 	FechaPartido = fechaPartido;
 }
-
-
 
 
 public Partido(int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante,LocalDate fechaPartido) {
