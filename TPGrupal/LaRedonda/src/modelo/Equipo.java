@@ -6,7 +6,7 @@ public class Equipo {
 private int id;
 private String Nombre;
 private Entrenador Entrenador;
-private List<Jugador> lstJugadores;
+private List<Jugador> lstJugadores;;
 private String Codigo;
 private LocalDate fechaFundacion;
 
