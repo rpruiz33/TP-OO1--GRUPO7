@@ -120,9 +120,9 @@ todas las listas por regla de negocio. Por ejemplo baja a un jugador del equipo.
         int i = 0;
         boolean encontrado = false;
         Jugador aux = null;
-        while (i < lstJugadores.size() && !encontrado) {
+        while (lstJugadores.size()>i && !encontrado) {
             if (lstJugadores.get(i).getId() == idJugador)
-            
+            System.out.println("22222");
             {
                 aux = lstJugadores.get(i);
                 encontrado = true;

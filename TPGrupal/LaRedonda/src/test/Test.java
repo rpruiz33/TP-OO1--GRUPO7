@@ -77,13 +77,80 @@ public class Test {
       System.out.println(jugador1.getLstEstadistica().toString());
 	
         */
+Sistema sistema = new Sistema();
+		
+		Entrenador entrenador1 = new Entrenador( 1 ," nombre", "apellido",  37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");		
+		Entrenador entrenador2 = new Entrenador( 1 ," nombre", "apellido",  37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
+		
+	    Jugador jugador1 = new Jugador("leo", "apellido", 11111111, LocalDate.of(1992, 10, 20), 1, 1.20f, 1.70f,
+		"delantero", 10);
+	    
+	    List<Jugador> lstJugadores1=new ArrayList<Jugador>();
+        List<Jugador> lstJugadores2=new ArrayList<Jugador>();
+        lstJugadores1.add(jugador1);
        
+        Equipo equipo3 = new Equipo (1,"Malasia", entrenador1, lstJugadores1, "mal",LocalDate.of(2020, 10, 10));
        
-    
+         sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3),120.f,120.f, "1", 2);
+        
+        System.out.println(sistema.getLstJugadores());
+        
  
         
-       
-       
+        System.out.println(sistema.traerJugador(1));
+        
+        try {
+			System.out.println(sistema.eliminarJugador(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+      /*  agregarEntrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
+                String estrategiaFavorita) {*/
+        
+        
+        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121,LocalDate.of(2012, 9, 3), "metergoles"));
+        System.out.println(sistema.traerEntrenador(1));
+        try {
+			System.out.println(sistema.eliminarEntrenador(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        /*public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+    			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion)*/
+        
+        
+        /*int id, String nombre, modelo.Entrenador entrenador, List<Jugador> lstJugadores, String codigo,
+		LocalDate fechaFundacion*/
+        Equipo equipo5 = new Equipo (1,"Malasia", entrenador2, lstJugadores1, "mal", LocalDate.of(2025, 3, 3));
+        Equipo equipo4 = new Equipo (2,"Republica del Congo", entrenador2, lstJugadores2, "con",LocalDate.of(2025, 3, 3));
+        List<Equipo> lstEquipo=new ArrayList<Equipo>();
+        
+        
+        lstEquipo.add(equipo4);
+        lstEquipo.add(equipo5);
+        System.out.println();
+        
+        /*int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante,LocalDate fechaPartido*/
+
+        Partido partido1=new Partido(1,"bocaa",equipo4,equipo5,LocalDate.of(1995, 6, 15));
+        List<Partido> lstPartidos=new ArrayList<Partido>();
+        
+        /*(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+    			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion)   */
+        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3)));
+	
+        System.out.println(sistema.traerTorneo(1));
+    
+        try {
+			System.out.println(sistema.eliminarTorneo(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
