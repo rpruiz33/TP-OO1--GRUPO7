@@ -118,10 +118,10 @@ una lista de equipos fundados antes de una fecha específica.*/
     	float prom=0;
     	int cont=0;	
     		
-    		for(int h=0;h<e.getLstJugador().size();h++) {
+    		for(int h=0;h<e.getLstJugadores().size();h++) {
     			
-    			if(e.getLstJugador().get(h).getEstatura()>0) {
-    				prom+=e.getLstJugador().get(h).getEstatura();
+    			if(e.getLstJugadores().get(h).getEstatura()>0) {
+    				prom+=e.getLstJugadores().get(h).getEstatura();
     				
     			cont++;
     				
@@ -146,9 +146,9 @@ una lista de equipos fundados antes de una fecha específica.*/
      		float mayor=0;
      		Equipo e=null;
      		for(int h=0;h<t.getLstEquipos().size();h++) {
-     			for(int i=0;i<t.getLstEquipos().get(h).getLstJugador().size();i++) {
-     			if(t.getLstEquipos().get(h).getLstJugador().get(i).getEstatura()>0) {
-     				prom+=t.getLstEquipos().get(h).getLstJugador().get(i).getEstatura();
+     			for(int i=0;i<t.getLstEquipos().get(h).getLstJugadores().size();i++) {
+     			if(t.getLstEquipos().get(h).getLstJugadores().get(i).getEstatura()>0) {
+     				prom+=t.getLstEquipos().get(h).getLstJugadores().get(i).getEstatura();
      				
      			cont++;
      				
