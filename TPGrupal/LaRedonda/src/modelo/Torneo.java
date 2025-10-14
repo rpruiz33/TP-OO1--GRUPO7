@@ -12,11 +12,11 @@ public class Torneo {
 	private List<Partido>LstPartidos; //Agregado avisar
 	private LocalDate fechaDeInicio;
 	private LocalDate fechaDeFinalizacion;
-	
+	private Equipo equipoGanador;
 	
 
 	public Torneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
-			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion) {
+			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion,Equipo equipoGanador) {
 		super();
 		this.id = id;
 		Nombre = nombre;
@@ -25,6 +25,15 @@ public class Torneo {
 		LstPartidos = lstPartidos;
 		this.fechaDeInicio = fechaDeInicio;
 		this.fechaDeFinalizacion = fechaDeFinalizacion;
+		this.equipoGanador=equipoGanador;
+	}
+
+	public Equipo getEquipoGanador() {
+		return equipoGanador;
+	}
+
+	public void setEquipoGanador(Equipo equipoGanador) {
+		this.equipoGanador = equipoGanador;
 	}
 
 	public int getId() {

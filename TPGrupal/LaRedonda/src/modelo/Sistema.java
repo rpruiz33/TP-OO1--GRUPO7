@@ -188,13 +188,13 @@ todas las listas por regla de negocio. Por ejemplo baja a un jugador del equipo.
 
 
     public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
-			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion) {
+			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {
         int id1 = 1;
         if (!lstTorneos.isEmpty()) {
             id1 = lstTorneos.get(lstTorneos.size() - 1).getId() + 1;
         }
         
-        Torneo t = new Torneo( id1, nombre, temporada, lstEquipos, lstPartidos,fechaDeInicio, fechaDeFinalizacion);
+        Torneo t = new Torneo( id1, nombre, temporada, lstEquipos, lstPartidos,fechaDeInicio, fechaDeFinalizacion, equipoGanador);
         
         return lstTorneos.add(t);
     }
@@ -225,7 +225,7 @@ todas las listas por regla de negocio. Por ejemplo baja a un jugador del equipo.
 utilizando una clase (Ganador, no se persiste es solo para generar reporte) con
 fecha, el equipo ganador, cantidad de goles*/
 
-    public List<Ganador> traerTorneoPorFecha(int idTorneo, LocalDate fecha,Equipo equipoGanador) {
+    public List<Ganador> traerTorneoPorFecha(int idTorneo, LocalDate fecha) {
     	Torneo taux=null;
     
 

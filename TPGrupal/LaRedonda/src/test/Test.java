@@ -141,7 +141,7 @@ Sistema sistema = new Sistema();
         
         /*(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
     			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion)   */
-        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3)));
+        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3),equipo4));
 	
         System.out.println(sistema.traerTorneo(1));
     
@@ -151,6 +151,9 @@ Sistema sistema = new Sistema();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3),equipo4));
+        
+        System.out.println(sistema.traerTorneoPorFecha(1, LocalDate.of(2025,3,3)));
 	}
 
 }
