@@ -96,7 +96,7 @@ public class Sistema {
             id = lstJugadores.get(lstJugadores.size() - 1).getId() + 1;
         }
 
-        Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta);
+        Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta,5);
 
         return lstJugadores.add(j);
     }
@@ -201,8 +201,8 @@ public class Sistema {
                 Partido partido = taux.getLstPartidos().get(j);
                 if (partido.getFechaPartido().equals(fecha)) {
                     if (partido.getListParticipacionPartido().size() >= 2) {
-                        int golesLocal = partido.getListParticipacionPartido().get(0).getGolesMetio();
-                        int golesVisitante = partido.getListParticipacionPartido().get(1).getGolesMetio();
+                        int golesLocal = partido.getListParticipacionPartido().get(0).getGoles();
+                        int golesVisitante = partido.getListParticipacionPartido().get(1).getGoles();
                         if (golesLocal > golesVisitante) {
                             ganadores.add(new Ganador(fecha, partido.getEquipoLocal(), golesLocal));
                         } else if (golesVisitante > golesLocal) {

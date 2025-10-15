@@ -11,8 +11,16 @@ public class Partido {
     private Equipo equipoVisitante;
     private LocalDate fechaPartido;
     private List<ParticipacionPartido> listParticipacionPartido;
+    private ArrayList<EstadisticaParticipacionPartido> estadisticas;
+    public ArrayList<EstadisticaParticipacionPartido> getEstadisticas() {
+		return estadisticas;
+	}
 
-    public int getId() {
+	public void setEstadisticas(ArrayList<EstadisticaParticipacionPartido> estadisticas) {
+		this.estadisticas = estadisticas;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -63,9 +71,21 @@ public class Partido {
         this.equipoVisitante = equipoVisitante;
         this.fechaPartido = fechaPartido;
         this.listParticipacionPartido = new ArrayList<>();
+        this.estadisticas = new ArrayList<>();
     }
 
     public List<ParticipacionPartido> getListParticipacionPartido() {
         return listParticipacionPartido;
     }
+    public boolean agregarParticipacion(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+        if (jugador == null) return false;
+
+        ParticipacionPartido participacion = new ParticipacionPartido(jugador,goles,asistencias,minutosJugados);
+
+        return listParticipacionPartido.add(participacion);
+    }
+    
+    
+    
 }
+

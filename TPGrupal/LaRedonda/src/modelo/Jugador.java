@@ -9,8 +9,14 @@ private float peso;
 private float estatura;
 private String posicion;
 private int numCamiseta;
+private int asistenciasTotales;
 
-
+public int getAsistenciasTotales() {
+	return asistenciasTotales;
+}
+public void setAsistenciasTotales(int asistenciasTotales) {
+	this.asistenciasTotales = asistenciasTotales;
+}
 public int getId() {
 	return id;
 }
@@ -41,21 +47,23 @@ public int getNumCamiseta() {
 public void setNumCamiseta(int numCamiseta) {
 	this.numCamiseta = numCamiseta;
 }
+
+
+
+public void sumarAsistencias(int cantidad) {
+    this.asistenciasTotales += cantidad;
+}
 public Jugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento, int id, float peso, float estatura,
-		String posicion, int numCamiseta) {
+		String posicion, int numCamiseta, int asistenciasTotales) {
 	super(nombre, apellido, dni, fechaNacimiento);
 	this.id = id;
 	this.peso = peso;
 	this.estatura = estatura;
 	this.posicion = posicion;
 	this.numCamiseta = numCamiseta;
+	this.asistenciasTotales = asistenciasTotales;
 }
-@Override
-public String toString() {
-	return "Jugador [id=" + id + ", peso=" + peso + ", estatura=" + estatura + ", posicion=" + posicion
-			+ ", numCamiseta=" + numCamiseta + ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido()
-			+ ", getDni()=" + getDni() + ", getFechaNacimiento()=" + getFechaNacimiento() + "]";
-}
+
 
 
 

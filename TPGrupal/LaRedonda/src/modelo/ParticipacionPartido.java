@@ -1,49 +1,47 @@
 package modelo;
 
 public class ParticipacionPartido {
+    private Jugador jugador;
+    private int goles;
+    private int asistencias;
+    private int minutosJugados;
 
-    private Partido partido;
-    private Equipo equipo;
-    private int golesMetio;
-
-    // Constructor vacío
-    public ParticipacionPartido() {
+    public ParticipacionPartido(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+        this.jugador = jugador;
+        this.goles = goles;
+        this.asistencias = asistencias;
+        this.minutosJugados = minutosJugados;
     }
 
-    // Constructor con parámetros
-    public ParticipacionPartido(Partido partido, Equipo equipo, int golesMetio) {
-        this.partido = partido;
-        this.equipo = equipo;
-        this.golesMetio = golesMetio;
-    }
+	public Jugador getJugador() {
+		return jugador;
+	}
 
-    // Getters y setters
-    public Partido getPartido() {
-        return partido;
-    }
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
 
-    public void setPartido(Partido partido) {
-        this.partido = partido;
-    }
+	public int getGoles() {
+		return goles;
+	}
 
-    public Equipo getEquipo() {
-        return equipo;
-    }
+	public void setGoles(int goles) {
+		this.goles = goles;
+	}
 
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
-    }
+	public int getAsistencias() {
+		return asistencias;
+	}
 
-    public int getGolesMetio() {
-        return golesMetio;
-    }
+	public void setAsistencias(int asistencias) {
+		this.asistencias = asistencias;
+	}
 
-    public void setGolesMetio(int golesMetio) {
-        this.golesMetio = golesMetio;
-    }
+	public int getMinutosJugados() {
+		return minutosJugados;
+	}
 
-    @Override
-    public String toString() {
-        return "ParticipacionPartido [equipo=" + equipo.getNombre() + ", golesMetio=" + golesMetio + "]";
-    }
+	public void setMinutosJugados(int minutosJugados) {
+		this.minutosJugados = minutosJugados;
+	}
 }
