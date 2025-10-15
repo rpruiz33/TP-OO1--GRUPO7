@@ -161,7 +161,7 @@ public class Sistema {
             id1 = lstTorneos.get(lstTorneos.size() - 1).getId() + 1;
         }
 
-        Torneo t = new Torneo(id1, nombre, temporada, lstEquipos, lstPartidos, fechaDeInicio, fechaDeFinalizacion, equipoGanador);
+        Torneo t = new Torneo(id1, nombre, temporada, fechaDeInicio, fechaDeFinalizacion, equipoGanador);
 
         return lstTorneos.add(t);
     }
@@ -241,5 +241,6 @@ public class Sistema {
         }
         return listAux;
     }
+    
 
 }

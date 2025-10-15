@@ -6,22 +6,29 @@ public class Equipo {
 private int id;
 private String Nombre;
 private Entrenador Entrenador;
-private List<Jugador> lstJugadores;;
+private List<Jugador> lstJugadores;
 private String Codigo;
 private LocalDate fechaFundacion;
-
+private List<Integer>puntos;
  
  
-public Equipo(int id, String nombre, modelo.Entrenador entrenador, List<Jugador> lstJugadores, String codigo,
+public Equipo(int id, String nombre,Entrenador entrenador, String codigo,
 		LocalDate fechaFundacion) {
 	super();
 	this.id = id;
 	Nombre = nombre;
 	Entrenador = entrenador;
-	this.lstJugadores = lstJugadores;
+	List<Jugador>lstJugadores=new ArrayList<Jugador>();
 	Codigo = codigo;
 	this.fechaFundacion = fechaFundacion;
+	List<Integer>puntos=new ArrayList<Integer>();
 }
+
+	
+
+
+
+
 
 public int getId() {
 	return id;
@@ -30,6 +37,7 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
+
 
 public String getNombre() {
 	return Nombre;
@@ -46,29 +54,29 @@ public Entrenador getEntrenador() {
 public void setEntrenador(Entrenador entrenador) {
 	Entrenador = entrenador;
 }
-
 public List<Jugador> getLstJugadores() {
 	return lstJugadores;
 }
-
 public void setLstJugadores(List<Jugador> lstJugadores) {
 	this.lstJugadores = lstJugadores;
 }
-
 public String getCodigo() {
 	return Codigo;
 }
-
 public void setCodigo(String codigo) {
 	Codigo = codigo;
 }
-
 public LocalDate getFechaFundacion() {
 	return fechaFundacion;
 }
-
 public void setFechaFundacion(LocalDate fechaFundacion) {
 	this.fechaFundacion = fechaFundacion;
+}
+public List<Integer> getPuntos() {
+	return puntos;
+}
+public void setPuntos(List<Integer> puntos) {
+	this.puntos = puntos;
 }
 
 public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
@@ -117,6 +125,28 @@ i++;
 if (aux == null) throw new Exception("El jugador no existe");
 return lstJugadores.remove(aux);
 }
+
+
+/*lista de puntos*/
+public boolean agregarPuntos(int puntos) {
+
+return this.puntos.add(puntos);
+}
+
+
+
+
+
+
+
+/*10. Cálculo de puntos de equipo: Implementar un método que calcule y retorne el total de
+puntos acumulados por un equipo, considerando 3 puntos por victoria y 1 por empate*/
+
+
+
+
+
+
 
 @Override
 public String toString() {

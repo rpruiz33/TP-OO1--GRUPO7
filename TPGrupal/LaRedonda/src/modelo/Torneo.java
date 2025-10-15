@@ -15,14 +15,14 @@ public class Torneo {
 	private Equipo equipoGanador;
 	
 
-	public Torneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+	public Torneo(int id, String nombre, String temporada,
 			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion,Equipo equipoGanador) {
 		super();
 		this.id = id;
 		Nombre = nombre;
 		Temporada = temporada;
-		LstEquipos = lstEquipos;
-		LstPartidos = lstPartidos;
+		LstEquipos = new ArrayList<Equipo>();
+		LstPartidos = new ArrayList<Partido>();
 		this.fechaDeInicio = fechaDeInicio;
 		this.fechaDeFinalizacion = fechaDeFinalizacion;
 		this.equipoGanador=equipoGanador;
@@ -98,11 +98,79 @@ public class Torneo {
 				+ ", LstPartidos=" + LstPartidos + ", fechaDeInicio=" + fechaDeInicio + ", fechaDeFinalizacion="
 				+ fechaDeFinalizacion + "]";
 	}
-   
+
+
+    public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
+        int id = 1;
+        if (!LstPartidos.isEmpty()) {
+            id = LstPartidos.get(LstPartidos.size() - 1).getId() + 1;
+        }
+
+        Partido p = new Partido(id, estadio, equipoLocal, equipoVisitante, fechaPartido);
+        return LstPartidos.add(p);
+    }
+
+    public Partido traerPartido(int idPartido) {
+        int i = 0;
+        boolean encontrado = false;
+        Partido aux = null;
+        while (i < LstPartidos.size() && !encontrado) {
+            if (LstPartidos.get(i).getId() == idPartido) {
+                aux = LstPartidos.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
+
+    public boolean eliminarPartido(int idPartido) throws Exception {
+        Partido aux = traerPartido(idPartido);
+        if (aux == null) throw new Exception("El partido no existe");
+        return LstPartidos.remove(aux);
+    }
+
+
+
+    public boolean agregarEquipo(String nombre,Entrenador e1, String codigo,LocalDate fechaFundacion) {
+        int id = 1;
+        if (!LstEquipos.isEmpty()) {
+            id = LstEquipos.get(LstEquipos.size() - 1).getId() + 1;
+        }
+/*(int id, String nombre,Entrenador entrenador, String codigo,
+		LocalDate fechaFundacion*/
+        Equipo e = new Equipo(id, nombre,e1, codigo ,fechaFundacion);
+        return LstEquipos.add(e);
+    }
+
+    public Equipo traerEquipo(int idEquipo) {
+        int i = 0;
+        boolean encontrado = false;
+        Equipo aux = null;
+        while (i < LstEquipos.size() && !encontrado) {
+            if (LstEquipos.get(i).getId() == idEquipo) {
+                aux = LstEquipos.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+        return aux;
+    }
+
+    public boolean eliminarEquipo(int idEquipo) throws Exception {
+        Equipo aux = traerEquipo(idEquipo);
+        if (aux == null) throw new Exception("El equipo no existe");
+        return LstEquipos.remove(aux);
+    }
+
+	
+	
+	
+	
     /*Búsqueda de equipos por fecha de fundación: Desarrollar un método que devuelva
 una lista de equipos fundados antes de una fecha específica.*/
 	
-    public List<Equipo> jugadoresFechaNacimento(LocalDate fecha1){
+    public List<Equipo> equipoFundacion (LocalDate fecha1){
     	List<Equipo>listAux=new ArrayList<Equipo>();
     	for(int g=0;g<LstEquipos.size();g++) {
 
