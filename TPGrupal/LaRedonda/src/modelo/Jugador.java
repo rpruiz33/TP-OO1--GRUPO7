@@ -50,6 +50,12 @@ public Jugador(String nombre, String apellido, int dni, LocalDate fechaNacimient
 	this.posicion = posicion;
 	this.numCamiseta = numCamiseta;
 }
+@Override
+public String toString() {
+	return "Jugador [id=" + id + ", peso=" + peso + ", estatura=" + estatura + ", posicion=" + posicion
+			+ ", numCamiseta=" + numCamiseta + ", getNombre()=" + getNombre() + ", getApellido()=" + getApellido()
+			+ ", getDni()=" + getDni() + ", getFechaNacimiento()=" + getFechaNacimiento() + "]";
+}
 
 
 

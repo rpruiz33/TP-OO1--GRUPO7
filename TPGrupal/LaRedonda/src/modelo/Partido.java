@@ -1,91 +1,71 @@
 package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Partido {
-private int id;
-private String Estadio;
-private Equipo EquipoLocal ;
-private Equipo EquipoVisitante;
-private ArrayList<EstadisticaParticipacionPartido>listParticipacionPartido;
-private LocalDate FechaPartido;
+    private int id;
+    private String estadio;
+    private Equipo equipoLocal;
+    private Equipo equipoVisitante;
+    private LocalDate fechaPartido;
+    private List<ParticipacionPartido> listParticipacionPartido;
 
+    public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
+	public String getEstadio() {
+		return estadio;
+	}
 
-public int getId() {
-	return id;
-}
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
+	}
 
+	public Equipo getEquipoLocal() {
+		return equipoLocal;
+	}
 
+	public void setEquipoLocal(Equipo equipoLocal) {
+		this.equipoLocal = equipoLocal;
+	}
 
+	public Equipo getEquipoVisitante() {
+		return equipoVisitante;
+	}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public void setEquipoVisitante(Equipo equipoVisitante) {
+		this.equipoVisitante = equipoVisitante;
+	}
 
+	public LocalDate getFechaPartido() {
+		return fechaPartido;
+	}
 
+	public void setFechaPartido(LocalDate fechaPartido) {
+		this.fechaPartido = fechaPartido;
+	}
 
+	public void setListParticipacionPartido(List<ParticipacionPartido> listParticipacionPartido) {
+		this.listParticipacionPartido = listParticipacionPartido;
+	}
 
-public String getEstadio() {
-	return Estadio;
-}
+	public Partido(int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
+        this.id = id;
+        this.estadio = estadio;
+        this.equipoLocal = equipoLocal;
+        this.equipoVisitante = equipoVisitante;
+        this.fechaPartido = fechaPartido;
+        this.listParticipacionPartido = new ArrayList<>();
+    }
 
-
-
-
-public void setEstadio(String estadio) {
-	Estadio = estadio;
-}
-
-
-
-
-public Equipo getEquipoLocal() {
-	return EquipoLocal;
-}
-
-
-
-
-public void setEquipoLocal(Equipo equipoLocal) {
-	EquipoLocal = equipoLocal;
-}
-
-public Equipo getEquipoVisitante() {
-	return EquipoVisitante;
-}
-
-public void setEquipoVisitante(Equipo equipoVisitante) {
-	EquipoVisitante = equipoVisitante;
-}
-
-public ArrayList<EstadisticaParticipacionPartido> getListParticipacionPartido() {
-	return listParticipacionPartido;
-}
-
-public void setListParticipacionPartido(ArrayList<EstadisticaParticipacionPartido> listParticipacionPartido) {
-	this.listParticipacionPartido = listParticipacionPartido;
-}
-
-public LocalDate getFechaPartido() {
-	return FechaPartido;
-}
-
-public void setFechaPartido(LocalDate fechaPartido) {
-	FechaPartido = fechaPartido;
-}
-
-
-public Partido(int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante,LocalDate fechaPartido) {
-	super();
-	this.id = id;
-	Estadio = estadio;
-	EquipoLocal = equipoLocal;
-	EquipoVisitante = equipoVisitante;
-	this.listParticipacionPartido=new ArrayList <EstadisticaParticipacionPartido>();
-	FechaPartido = fechaPartido;
-}
-
+    public List<ParticipacionPartido> getListParticipacionPartido() {
+        return listParticipacionPartido;
+    }
 }

@@ -4,156 +4,87 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.*;
+
 public class Test {
 
-	public static void main(String[] args) {
-		/*// TODO Auto-generated method stub
-      
-		// Entrenadores
-        Entrenador entrenador1 = new Entrenador("Scaloni", "Lionel", 11111111, LocalDate.of(1980, 5, 20), "Ofensiva");
-        Entrenador entrenador2 = new Entrenador("Ancelotti", "Carlo", 22222222, LocalDate.of(1975, 3, 10), "Defensiva");
+    public static void main(String[] args) {
 
-        List<Estadistica> listaEstadistica1=new  ArrayList<Estadistica>();
-        List<Estadistica> listaEstadistica2=new  ArrayList<Estadistica>();
-        List<Estadistica> listaEstadistica3=new  ArrayList<Estadistica>();
+        Sistema sistema = new Sistema();
 
-        
-        
-        Jugador jugador1 = new Jugador("Messi", "Lionel", 33333333, LocalDate.of(1995, 6, 15), 1.70f, 75, "Delantero", listaEstadistica1);
-        Jugador jugador2 = new Jugador("Dimaria", "Angel", 44444444, LocalDate.of(1990, 8, 20), 1.80f, 70, "Mediocampista",listaEstadistica2);
-        Jugador jugador3 = new Jugador("Neymar", "Neymar", 55555555, LocalDate.of(1998, 2, 12), 1.70f, 60, "Delantero",listaEstadistica3);
- 
+        // Entrenadores
+        Entrenador entrenador1 = new Entrenador(1, "nombre", "apellido", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");       
+        Entrenador entrenador2 = new Entrenador(1, "nombre", "apellido", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
 
-        Estadistica estadisticaA1=new Estadistica(jugador1, 7,7,33);
-        Estadistica estadisticaA2=new Estadistica(jugador1 ,7,7,33); 
-        Estadistica estadisticaA3=new Estadistica(jugador1, 7,7,33);
-        
-        
-        Estadistica estadisticaB1=new Estadistica(jugador2, 7,7,33);
-        Estadistica estadisticaB2=new Estadistica(jugador2 ,7,7,33); 
-        Estadistica estadisticaB3=new Estadistica(jugador2, 7,7,33);
-        
-        Estadistica estadisticaC1=new Estadistica(jugador3, 7,7,33);
-        Estadistica estadisticaC2=new Estadistica(jugador3 ,7,7,33); 
-        Estadistica estadisticaC3=new Estadistica(jugador3, 7,7,33);
-        
-        listaEstadistica1.add(estadisticaA1);
-        listaEstadistica1.add(estadisticaA2);
-        listaEstadistica1.add(estadisticaA3);
-        
-        listaEstadistica2.add(estadisticaB1);
-        listaEstadistica2.add(estadisticaB2);
-        listaEstadistica2.add(estadisticaB3);
-        
-        listaEstadistica3.add(estadisticaC1);
-        listaEstadistica3.add(estadisticaC2);
-        listaEstadistica3.add(estadisticaC3);
-        
-        
-        
-        List<Jugador> lstJugadores1=new ArrayList<Jugador>();
-        List<Jugador> lstJugadores2=new ArrayList<Jugador>();
+        // Jugadores
+        Jugador jugador1 = new Jugador("leo", "apellido", 11111111, LocalDate.of(1992, 10, 20), 1, 1.20f, 1.70f, "delantero", 10);
+
+        List<Jugador> lstJugadores1 = new ArrayList<Jugador>();
+        List<Jugador> lstJugadores2 = new ArrayList<Jugador>();
         lstJugadores1.add(jugador1);
-        lstJugadores1.add(jugador2);
-        lstJugadores2.add(jugador3);
-        Equipo equipo1 = new Equipo ("Brasil", entrenador2, lstJugadores2, "bra");
-        Equipo equipo2 = new Equipo ("Argentina", entrenador2, lstJugadores1, "arg");
-    
-        Partido p1=new Partido(LocalDate.of(1995, 6, 15), "monumental", equipo1, equipo2);
-     
-        Equipo equipo3 = new Equipo ("Malasia", entrenador2, lstJugadores1, "mal");
-        Equipo equipo4 = new Equipo ("Republica del Congo", entrenador2, lstJugadores2, "con");
-    
-        Partido partido1=new Partido(LocalDate.of(1995, 6, 15), "monumental", equipo3, equipo4);
-        List<Partido> lstPartidos=new ArrayList<Partido>();
-        List<Equipo> lstEquipos=new ArrayList<Equipo>();
-        lstEquipos.add(equipo1);
-        lstPartidos.add(partido1);
-        Torneo mundial=new Torneo(1, "mundial", "2026", lstEquipos,  lstPartidos,LocalDate.of(1995, 6, 15), LocalDate.of(1995, 6, 20));
-    
-        
-      System.out.println(mundial.getLstEquipos().toString());
-      System.out.println(mundial.getLstPartidos().toString());
-      System.out.println(jugador1.getLstEstadistica().toString());
-	
-        */
-Sistema sistema = new Sistema();
-		
-		Entrenador entrenador1 = new Entrenador( 1 ," nombre", "apellido",  37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");		
-		Entrenador entrenador2 = new Entrenador( 1 ," nombre", "apellido",  37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
-		
-	    Jugador jugador1 = new Jugador("leo", "apellido", 11111111, LocalDate.of(1992, 10, 20), 1, 1.20f, 1.70f,
-		"delantero", 10);
-	    
-	    List<Jugador> lstJugadores1=new ArrayList<Jugador>();
-        List<Jugador> lstJugadores2=new ArrayList<Jugador>();
-        lstJugadores1.add(jugador1);
-       
-        Equipo equipo3 = new Equipo (1,"Malasia", entrenador1, lstJugadores1, "mal",LocalDate.of(2020, 10, 10));
-       
-         sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3),120.f,120.f, "1", 2);
-        
+
+        // Equipos
+        Equipo equipo3 = new Equipo(1, "Malasia", entrenador1, lstJugadores1, "mal", LocalDate.of(2020, 10, 10));
+        Equipo equipo5 = new Equipo(1, "Malasia", entrenador2, lstJugadores1, "mal", LocalDate.of(2025, 3, 3));
+        Equipo equipo4 = new Equipo(2, "Republica del Congo", entrenador2, lstJugadores2, "con", LocalDate.of(2025, 3, 3));
+
+        // Agregamos jugador al sistema
+        sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3), 120.f, 120.f, "1", 2);
         System.out.println(sistema.getLstJugadores());
-        
- 
-        
         System.out.println(sistema.traerJugador(1));
-        
         try {
-			System.out.println(sistema.eliminarJugador(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        
-      /*  agregarEntrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
-                String estrategiaFavorita) {*/
-        
-        
-        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121,LocalDate.of(2012, 9, 3), "metergoles"));
+            System.out.println(sistema.eliminarJugador(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Entrenadores
+        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
         System.out.println(sistema.traerEntrenador(1));
         try {
-			System.out.println(sistema.eliminarEntrenador(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        /*public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
-    			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion)*/
-        
-        
-        /*int id, String nombre, modelo.Entrenador entrenador, List<Jugador> lstJugadores, String codigo,
-		LocalDate fechaFundacion*/
-        Equipo equipo5 = new Equipo (1,"Malasia", entrenador2, lstJugadores1, "mal", LocalDate.of(2025, 3, 3));
-        Equipo equipo4 = new Equipo (2,"Republica del Congo", entrenador2, lstJugadores2, "con",LocalDate.of(2025, 3, 3));
-        List<Equipo> lstEquipo=new ArrayList<Equipo>();
-        
-        
+            System.out.println(sistema.eliminarEntrenador(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Lista de equipos y partidos
+        List<Equipo> lstEquipo = new ArrayList<>();
         lstEquipo.add(equipo4);
         lstEquipo.add(equipo5);
-        System.out.println();
-        
-        /*int id, String estadio, Equipo equipoLocal, Equipo equipoVisitante,LocalDate fechaPartido*/
 
-        Partido partido1=new Partido(1,"bocaa",equipo4,equipo5,LocalDate.of(1995, 6, 15));
-        List<Partido> lstPartidos=new ArrayList<Partido>();
-        
-        /*(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
-    			LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion)   */
-        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3),equipo4));
-	
+        Partido partido1 = new Partido(1, "bocaa", equipo4, equipo5, LocalDate.of(2025, 3, 3));
+        Partido partido2 = new Partido(1, "bocaa", equipo4, equipo5, LocalDate.of(2025, 3, 3));
+
+        // Participación de los equipos en el partido
+        ParticipacionPartido participacionLocal = new ParticipacionPartido(partido1, equipo4, 2);
+        ParticipacionPartido participacionVisitante = new ParticipacionPartido(partido1, equipo5, 1);
+        partido1.getListParticipacionPartido().add(participacionLocal);
+        partido1.getListParticipacionPartido().add(participacionVisitante);
+
+        List<Partido> lstPartidos = new ArrayList<>();
+        lstPartidos.add(partido1);
+        lstPartidos.add(partido2);
+
+        // Agregar torneo
+        System.out.println(sistema.agregarTorneo(1, "mundial", "1", lstEquipo, lstPartidos, LocalDate.of(2025, 3, 3), LocalDate.of(2025, 3, 3), equipo4));
         System.out.println(sistema.traerTorneo(1));
-    
         try {
-			System.out.println(sistema.eliminarTorneo(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println(sistema.agregarTorneo(1, "mundial", "1",lstEquipo,lstPartidos,LocalDate.of(2025, 3,3), LocalDate.of(2025, 3,3),equipo4));
-        
-        System.out.println(sistema.traerTorneoPorFecha(1, LocalDate.of(2025,3,3)));
-	}
+            System.out.println(sistema.eliminarTorneo(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Reagregar torneo
+        System.out.println(sistema.agregarTorneo(1, "mundial", "1", lstEquipo, lstPartidos, LocalDate.of(2025, 3, 3), LocalDate.of(2025, 3, 3), equipo4));
+        System.out.println(sistema.traerTorneo(1));
+
+        // Traer ganadores por fecha
+        System.out.println(sistema.traerTorneoPorFecha(1, LocalDate.of(2025, 3, 3)));
+        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
+
+        System.out.println(sistema.busquedaEntrenadoresPorTactica("metergoles")); 
+        sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3), 120.f, 120.f, "1", 2);
+        System.out.println(sistema.jugadoresFechaNacimento(LocalDate.of(1991, 1, 2), LocalDate.of(2025, 12, 24)));
+    
+    }
 
 }
