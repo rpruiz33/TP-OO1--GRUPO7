@@ -80,7 +80,7 @@ public class Partido {
     public boolean agregarParticipacion(Jugador jugador, int goles, int asistencias, int minutosJugados) {
         if (jugador == null) return false;
 
-        ParticipacionPartido participacion = new ParticipacionPartido(jugador,goles,asistencias,minutosJugados);
+        ParticipacionPartido participacion = new ParticipacionPartido(jugador,goles);
 
         return listParticipacionPartido.add(participacion);
     }

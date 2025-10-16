@@ -1,7 +1,8 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Equipo {
     private int id;
@@ -49,17 +50,19 @@ public class Equipo {
     public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
                                   float peso, float estatura, String posicion, int numCamiseta) {
         int id = 1;
-        if (!lstJugadores.isEmpty()) {
+        if (lstJugadores.size() > 0) {
             id = lstJugadores.get(lstJugadores.size() - 1).getId() + 1;
         }
-        Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta,9);
+        Jugador j = new Jugador(nombre, apellido, dni, fechaNacimiento, id, peso, estatura, posicion, numCamiseta, 9);
         return lstJugadores.add(j);
     }
 
     // Traer jugador
     public Jugador traerJugador(int idJugador) {
-        for (Jugador j : lstJugadores) {
-            if (j.getId() == idJugador) return j;
+        for (int i = 0; i < lstJugadores.size(); i++) {
+            if (lstJugadores.get(i).getId() == idJugador) {
+                return lstJugadores.get(i);
+            }
         }
         return null;
     }
@@ -79,15 +82,48 @@ public class Equipo {
     // Calcular total de puntos
     public int totalPuntos() {
         int suma = 0;
-        for (int p : puntos) {
-            suma += p;
+        for (int i = 0; i < puntos.size(); i++) {
+            suma += puntos.get(i);
         }
         return suma;
     }
 
     @Override
     public String toString() {
+        String jugadoresStr = "";
+        for (int i = 0; i < lstJugadores.size(); i++) {
+            jugadoresStr += lstJugadores.get(i).toString();
+            if (i < lstJugadores.size() - 1) {
+                jugadoresStr += ", ";
+            }
+        }
+
+        String puntosStr = "";
+        for (int i = 0; i < puntos.size(); i++) {
+            puntosStr += puntos.get(i);
+            if (i < puntos.size() - 1) {
+                puntosStr += ", ";
+            }
+        }
+
         return "Equipo [id=" + id + ", Nombre=" + Nombre + ", Entrenador=" + Entrenador
-                + ", lstJugadores=" + lstJugadores + ", Codigo=" + Codigo + ", fechaFundacion=" + fechaFundacion + "]";
+                + ", lstJugadores=[" + jugadoresStr + "], Codigo=" + Codigo
+                + ", fechaFundacion=" + fechaFundacion + ", puntos=[" + puntosStr + "]]";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Equipo other = (Equipo) obj;
+        return id == other.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+
+
+
 }

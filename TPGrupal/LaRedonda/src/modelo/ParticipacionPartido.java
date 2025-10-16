@@ -6,7 +6,7 @@ public class ParticipacionPartido {
     private int asistencias;
     private int minutosJugados;
 
-    public ParticipacionPartido(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+    public ParticipacionPartido(Jugador jugador, int goles) {
         this.jugador = jugador;
         this.goles = goles;
         this.asistencias = asistencias;

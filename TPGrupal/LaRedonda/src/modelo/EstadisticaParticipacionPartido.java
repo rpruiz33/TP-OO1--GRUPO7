@@ -14,9 +14,17 @@ private int golesMetio;
 private int asistenciaParitodo;
 private int minutosJugados;
 private LocalDate fechaPartido;
+private int asistencias;
 
 
 
+
+public int getAsistencias() {
+	return asistencias;
+}
+public void setAsistencias(int asistencias) {
+	this.asistencias = asistencias;
+}
 public int getId() {
 	return id;
 }
@@ -78,19 +86,20 @@ public void setFechaPartido(LocalDate fechaPartido) {
 	this.fechaPartido = fechaPartido;
 }
 public EstadisticaParticipacionPartido(int id, Equipo equipoLocal, Equipo equpoVisitante, Equipo ganador,
-		String estadio, ArrayList<Jugador> listJugadorJugo, int golesMetio, int asistenciaParitodo, int minutosJugados,
-		LocalDate fechaPartido) {
+		String estadio, int golesMetio, int asistenciaParitodo, int minutosJugados,
+		LocalDate fechaPartido,int asistencias) {
 	super();
 	this.id = id;
 	this.equipoLocal = equipoLocal;
 	this.equpoVisitante = equpoVisitante;
 	this.ganador = ganador;
 	Estadio = estadio;
-	this.listJugadorJugo = listJugadorJugo;
+	this.listJugadorJugo = new ArrayList<Jugador>();
 	this.golesMetio = golesMetio;
 	this.asistenciaParitodo = asistenciaParitodo;
 	this.minutosJugados = minutosJugados;
 	this.fechaPartido = fechaPartido;
+	this.asistencias=asistencias;
 }
 
 
