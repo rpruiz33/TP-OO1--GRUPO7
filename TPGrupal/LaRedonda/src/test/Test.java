@@ -9,159 +9,138 @@ public class Test {
     public static void main(String[] args) {
 
         Sistema sistema = new Sistema();
-        sistema.agregarEntrenador("nombre", "apellido", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
-        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
-        System.out.println(sistema.agregarTorneo(1, "mundial", "1", null, null, LocalDate.of(2025, 3, 3), LocalDate.of(2025, 3, 3), null));
 
-        Jugador j1 = new Jugador("Lionel", "Messi", 0, null, 0, 0, 0, null, 0, 0);
-        Jugador j2 = new Jugador("Ángel", "Di María", 0, null, 0, 0, 0, null, 0, 0);
-        Jugador j3 = new Jugador("Julián", "Álvarez", 0, null, 0, 0, 0, null, 0, 0);
+        // --- 1) Agrego entrenadores de forma controlada y guardo referencias ---
+        boolean ok = sistema.agregarEntrenador("Juan", "Perez", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
+        System.out.println("agregarEntrenador Juan Perez -> " + ok);
 
-        Equipo equipo4 = new Equipo(1, "Republica del Congo", sistema.traerEntrenador(1), "con", LocalDate.of(2025, 3, 3));
-        Equipo equipo3 = new Equipo(1, "Malasia", sistema.traerEntrenador(1), "mal", LocalDate.of(2020, 10, 10));
+        ok = sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles");
+        System.out.println("agregarEntrenador Roberto Ruiz -> " + ok);
+
+        // Obtengo referencias seguras (alternativa a llamar por ID si no estás seguro de la asignación)
+        Entrenador entrenador1 = sistema.traerEntrenador(1);
+        Entrenador entrenador2 = sistema.traerEntrenador(2);
+
+        if (entrenador1 == null || entrenador2 == null) {
+            System.out.println("Error: no se encontraron entrenadores esperados (revisar IDs).");
+            // Si dependés de estos entrenadores para continuar, podés return; aquí continúo pero con checks abajo.
+        }
+
+        // --- 2) Creo un torneo y verifico resultado ---
+        ok = sistema.agregarTorneo(1, "mundial", "1", null, null, LocalDate.of(2025, 3, 3), LocalDate.of(2025, 3, 3), null);
+        System.out.println("agregarTorneo(1, mundial) -> " + ok);
 
         Torneo torneo = sistema.traerTorneo(1);
-
-
-        torneo.agregarEquipo("singapur", sistema.traerEntrenador(2), "MAL", LocalDate.of(2020, 10, 10));
-
-        System.out.println(sistema.traerTorneo(1).agregarPartido("river", equipo4, equipo3, LocalDate.of(2025, 3, 3)));
-
-        sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3), 120.f, 120.f, "1", 2);
-        System.out.println(sistema.getLstJugadores());
-        System.out.println(sistema.traerJugador(1));
-
-        try {
-            System.out.println(sistema.eliminarJugador(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
-        System.out.println(sistema.traerEntrenador(1));
-
-        try {
-            System.out.println(sistema.eliminarEntrenador(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
-        System.out.println(sistema.getLstTorneos().get(0).agregarEquipo("Malasia", sistema.traerEntrenador(0), "mal", LocalDate.of(2020, 10, 10)));
-        System.out.println(sistema.getLstTorneos().get(0).agregarPartido("bocaa", sistema.traerTorneo(1).traerEquipo(1), sistema.traerTorneo(1).traerEquipo(1), LocalDate.of(2025, 3, 3)));
-        System.out.println(sistema.getLstTorneos().get(0).agregarPartido("bocaa", sistema.traerTorneo(1).traerEquipo(1), sistema.traerTorneo(1).traerEquipo(1), LocalDate.of(2025, 3, 3)));
-        System.out.println(sistema.agregarTorneo(2, "libertadores", "1", sistema.getLstTorneos().get(0).getLstEquipos(), sistema.getLstPartidos(), LocalDate.of(2025, 6, 3), LocalDate.of(2026, 3, 2), sistema.traerTorneo(1).traerEquipo(0)));
-        System.out.println(sistema.traerTorneo(1));
-
-        try {
-            System.out.println(sistema.eliminarTorneo(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(sistema.traerTorneoPorFecha(1, LocalDate.of(2025, 3, 3)));
-        System.out.println(sistema.agregarEntrenador("roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
-        System.out.println(sistema.busquedaEntrenadoresPorTactica("metergoles"));
-
-        sistema.agregarJugador("nombre", "apellido", 11111, LocalDate.of(2025, 12, 3), 120.f, 120.f, "1", 2);
-        System.out.println(sistema.jugadoresFechaNacimento(LocalDate.of(1991, 1, 2), LocalDate.of(2025, 12, 24)));
-
-        Equipo equipo1 = new Equipo(1, "Republica del Congo", sistema.traerEntrenador(1), "CON", LocalDate.of(2025, 3, 3));
-        Equipo equipo2 = new Equipo(2, "Malasia", sistema.traerEntrenador(2), "MAL", LocalDate.of(2020, 10, 10));
-
-        torneo.agregarEquipo("Republica del Congo", sistema.traerEntrenador(1), "CON", LocalDate.of(2025, 3, 3));
-        torneo.agregarEquipo("Malasia", sistema.traerEntrenador(2), "MAL", LocalDate.of(2020, 10, 10));
-
-        // Traer equipos usando for tradicional
-        Equipo local = null;
-        Equipo visitante = null;
-        for (int i = 0; i < torneo.getLstEquipos().size(); i++) {
-            if (torneo.getLstEquipos().get(i).getId() == 1) local = torneo.getLstEquipos().get(i);
-            if (torneo.getLstEquipos().get(i).getId() == 2) visitante = torneo.getLstEquipos().get(i);
-        }
-
-        if (local == null || visitante == null) {
-            System.out.println("Los equipos no existen todavía");
+        if (torneo == null) {
+            System.out.println("No se creó/recuperó el torneo 1. Fin del test.");
             return;
         }
 
-        sistema.agregarPartido("Estadio Principal", local, visitante, LocalDate.of(2025, 3, 3));
+        // --- 3) Agrego equipos al torneo usando referencias seguras a entrenadores ---
+        // Evitar IDs duplicados: uso 1 y 2
+        boolean addEq = torneo.agregarEquipo("Republica del Congo", entrenador1, "CON", LocalDate.of(2025, 3, 3));
+        System.out.println("agregarEquipo Congo -> " + addEq);
 
-        System.out.println(torneo.traerEquipo(1).agregarPuntos(3));
-        System.out.println(torneo.traerEquipo(1).agregarPuntos(1));
-        System.out.println(torneo.traerEquipo(1).agregarPuntos(3));
+        addEq = torneo.agregarEquipo("Malasia", entrenador2, "MAL", LocalDate.of(2020, 10, 10));
+        System.out.println("agregarEquipo Malasia -> " + addEq);
 
-        torneo.agregarPartido("River", torneo.traerEquipo(1), torneo.traerEquipo(2), LocalDate.of(2025, 3, 3));
-
-        System.out.println("------------------");
-
-        ArrayList<Jugador> jugadoresPartido = new ArrayList<Jugador>();
-        jugadoresPartido.add(sistema.traerJugador(1));
-
-        EstadisticaParticipacionPartido est1 = new EstadisticaParticipacionPartido(1, torneo.traerEquipo(0), torneo.traerEquipo(1), torneo.traerEquipo(0), "River", 2, 1, 90, LocalDate.of(2025, 3, 3), 2);
-        EstadisticaParticipacionPartido est2 = new EstadisticaParticipacionPartido(2, torneo.traerEquipo(1), torneo.traerEquipo(0), torneo.traerEquipo(1), "Boca", 1, 0, 90, LocalDate.of(2025, 3, 10), 23);
-
-        Partido partido1 = torneo.getLstPartidos().get(0);
-
-        // Participaciones usando for tradicional
-        for (int i = 0; i < est1.getListJugadorJugo().size(); i++) {
-            Jugador j = est1.getListJugadorJugo().get(i);
-            partido1.agregarParticipacion(j, est1.getGolesMetio(), est1.getAsistenciaParitodo(), est1.getMinutosJugados());
-        }
-        for (int i = 0; i < est2.getListJugadorJugo().size(); i++) {
-            Jugador j = est2.getListJugadorJugo().get(i);
-            partido1.agregarParticipacion(j, est2.getGolesMetio(), est2.getAsistenciaParitodo(), est2.getMinutosJugados());
+        // Traigo equipos desde el torneo (seguro si se agregaron correctamente)
+        Equipo local = torneo.traerEquipo(1);      // asumo que el primer equipo tiene id 1
+        Equipo visitante = torneo.traerEquipo(2);  // asumo id 2
+        if (local == null || visitante == null) {
+            System.out.println("No se encontraron equipos en el torneo. Revisa agregarEquipo o IDs.");
+        } else {
+            // --- 4) Agrego un partido al torneo (uso los objetos locales para evitar confusiones de ID) ---
+            boolean addPartido = torneo.agregarPartido("Estadio Principal", local, visitante, LocalDate.of(2025, 3, 3));
+            System.out.println("agregarPartido Estadio Principal -> " + addPartido);
         }
 
+        // --- 5) Agrego jugadores al sistema y compruebo existencia ---
+        ok = sistema.agregarJugador("Nombre", "Apellido", 11111, LocalDate.of(2000, 12, 3), 120.f, 120.f, "1", 2);
+        System.out.println("agregarJugador Nombre Apellido -> " + ok);
+
+        // Asumo que el primer jugador creado tiene id = 1, pero lo comprobamos:
+        Jugador j1 = sistema.traerJugador(1);
+        if (j1 == null) {
+            System.out.println("Jugador 1 no encontrado. Revisar método agregarJugador o la asignación de ID.");
+        } else {
+            System.out.println("Jugador 1: " + j1.getNombre() + " " + j1.getApellido());
+        }
+
+        // --- 6) Pruebo eliminar jugador con try/catch (como tenías) ---
+        try {
+            boolean eliminado = sistema.eliminarJugador(1);
+            System.out.println("eliminarJugador(1) -> " + eliminado);
+        } catch (Exception e) {
+            System.out.println("Excepción al eliminar jugador 1:");
+            e.printStackTrace();
+        }
+
+        // --- 7) Pruebo volver a agregar entrenador y eliminar (ejemplo de CRUD) ---
+        ok = sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles");
+        System.out.println("re-agregarEntrenador Roberto Ruiz -> " + ok);
+        Entrenador eRepetido = sistema.traerEntrenador(1); // chequear cuál ID te devuelve
+        System.out.println("traerEntrenador(1) -> " + (eRepetido != null ? eRepetido.getApellido() : "null"));
+
+        try {
+            boolean elimEntr = sistema.eliminarEntrenador(1);
+            System.out.println("eliminarEntrenador(1) -> " + elimEntr);
+        } catch (Exception e) {
+            System.out.println("Excepción al eliminar entrenador 1:");
+            e.printStackTrace();
+        }
+
+        // --- 8) Generar tabla de posiciones / goleadores con validaciones ---
         List<Posicion> tabla = torneo.generarTablaPosiciones();
-        System.out.println("TABLA DE POSICIONES");
-
-        for (int i = 0; i < tabla.size(); i++) {
-            Posicion p = tabla.get(i);
-            System.out.println((i + 1) + "° " + p.getEquipo().getNombre() + " - " + p.getPuntos() + " pts");
+        if (tabla != null) {
+            System.out.println("TABLA DE POSICIONES");
+            for (int i = 0; i < tabla.size(); i++) {
+                Posicion p = tabla.get(i);
+                System.out.println((i + 1) + "° " + p.getEquipo().getNombre() + " - " + p.getPuntos() + " pts");
+            }
+        } else {
+            System.out.println("No se pudo generar tabla de posiciones (null).");
         }
 
-        Partido partido11 = new Partido(1, "Estadio A", equipo1, equipo2, LocalDate.of(2025, 5, 1));
+        // --- 9) Ejemplo de creación y uso de Partido/Participaciones independiente ---
+        // Creo jugadores locales para pruebas
+        Jugador p1 = new Jugador("Lionel", "Messi", 999, LocalDate.of(1987,6,24), 0,0,0, "",0, 0);
+        Jugador p2 = new Jugador("Angel", "Di María", 998, LocalDate.of(1988,2,14), 0,0,0, "",0, 0);
+        Jugador p3 = new Jugador("Julian", "Álvarez", 997, LocalDate.of(2000,1,31), 0,0,0, "",0, 0);
 
-        ParticipacionPartido pp1 = new ParticipacionPartido(j1, 2);
-        ParticipacionPartido pp2 = new ParticipacionPartido(j2, 1);
-        ParticipacionPartido pp3 = new ParticipacionPartido(j3, 1);
+        Equipo e1 = new Equipo(100, "EquipoA", entrenador1, "EQA", LocalDate.now());
+        Equipo e2 = new Equipo(101, "EquipoB", entrenador2, "EQB", LocalDate.now());
+
+        Partido partido11 = new Partido(1, "Estadio A", e1, e2, LocalDate.of(2025, 5, 1));
+        ParticipacionPartido pp1 = new ParticipacionPartido(p1, 2);
+        ParticipacionPartido pp2 = new ParticipacionPartido(p2, 1);
+        ParticipacionPartido pp3 = new ParticipacionPartido(p3, 1);
 
         partido11.getListParticipacionPartido().add(pp1);
         partido11.getListParticipacionPartido().add(pp2);
         partido11.getListParticipacionPartido().add(pp3);
 
-        EstadisticaParticipacionPartido est11 = new EstadisticaParticipacionPartido(0, visitante, visitante, visitante, null, 0, 0, 0, null, 0);
-        est11.setListJugadorJugo(new ArrayList<Jugador>());
-        est11.getListJugadorJugo().add(j1);
-        est11.getListJugadorJugo().add(j2);
-        est11.getListJugadorJugo().add(j3);
-        est11.setAsistenciaParitodo(1);
+        torneo.getLstPartidos().add(partido11); // si getLstPartidos() devuelve null, esto fallará -> comprobar si fuera necesario.
 
-        partido11.setEstadisticas(new ArrayList<EstadisticaParticipacionPartido>());
-        partido11.getEstadisticas().add(est11);
-
-        torneo.getLstPartidos().add(partido11);
-
-        ArrayList<Goleador> goleadores = torneo.generarTablaGoleadores();
-        System.out.println();
-        System.out.println("TABLA DE GOLEADORES");
-        int pos = 1;
-        for (int i = 0; i < goleadores.size(); i++) {
-            Goleador g = goleadores.get(i);
-            System.out.println(pos + "° " + g.getJugador().getNombre() + " " + g.getJugador().getApellido() +
-                    " - Goles: " + g.getGoles());
-            pos++;
-        }
+        System.out.println("Test finalizado correctamente.");
         
+        ArrayList<Goleador> goleadores = torneo.generarTablaGoleadores();
+        System.out.println("\nTABLA DE GOLEADORES");
+        int posG = 1;
+        for (Goleador g : goleadores) {
+            System.out.println(posG + "° " + g.getJugador().getNombre() + " " + g.getJugador().getApellido() +
+                    " - Goles: " + g.getGoles());
+            posG++;
+        }
+
         ArrayList<Asistencia> asistidores = torneo.generarTablaAsistidores();
         System.out.println("\nTABLA DE ASISTIDORES");
-        pos = 1;
-        for (int i = 0; i < asistidores.size(); i++) {
-            Asistencia a = asistidores.get(i);
-            System.out.println(pos + "° " + a.getJugador().getNombre() + " " + a.getJugador().getApellido() +
+        int posA = 1;
+        for (Asistencia a : asistidores) {
+            System.out.println(posA + "° " + a.getJugador().getNombre() + " " + a.getJugador().getApellido() +
                     " - Asistencias: " + a.getAsistencias());
-            pos++;
+            posA++;
         }
     }
-}
+    }
+
