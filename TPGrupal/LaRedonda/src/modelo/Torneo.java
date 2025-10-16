@@ -149,7 +149,7 @@ public class Torneo {
         return lstPartidos.remove(p);
     }
 
-    // Generar tabla de posiciones
+    
     public List<Posicion> generarTablaPosiciones() {
         List<Posicion> tabla = new ArrayList<Posicion>();
         int p=0;

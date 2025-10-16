@@ -55,7 +55,7 @@ public class Sistema {
 
 
 
-	// Agregar partido
+
     public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
         int id = 1;
         if (lstPartidos.size() > 0) {
@@ -83,7 +83,7 @@ public class Sistema {
     }
 
 
-    // Eliminar partido
+    
     public boolean eliminarPartido(int idPartido) throws Exception {
         Partido aux = traerPartido(idPartido);
         if (aux == null) {
@@ -92,7 +92,7 @@ public class Sistema {
         return lstPartidos.remove(aux);
     }
 
-    // Agregar jugador
+    
     public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
                                   float peso, float estatura, String posicion, int numCamiseta) {
         int id = 1;
@@ -131,7 +131,7 @@ public class Sistema {
         return lstJugadores.remove(aux);
     }
 
-    // Agregar entrenador
+
     public boolean agregarEntrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
                                      String estrategiaFavorita) {
         int id = 1;
@@ -142,7 +142,7 @@ public class Sistema {
         return lstEntrenadores.add(e);
     }
 
-    // Traer entrenador
+
     public Entrenador traerEntrenador(int idEntrenador) {
         Entrenador aux = null;
         int i = 0;
@@ -170,7 +170,7 @@ public class Sistema {
         	return lstEntrenadores.remove(aux);
     }
 
-    // Agregar torneo
+   
     public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
                                  LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {
         int id1 = 1;
@@ -200,14 +200,14 @@ public class Sistema {
     }
 
 
-    // Eliminar torneo
+
     public boolean eliminarTorneo(int idTorneo) throws Exception {
         Torneo aux = traerTorneo(idTorneo);
         if (aux == null) throw new Exception("El torneo no existe");
         return lstTorneos.remove(aux);
     }
 
-    // Traer torneo por fecha (lista de ganadores)
+
     public List<Ganador> traerTorneoPorFecha(int idTorneo, LocalDate fecha) {
         Torneo taux = this.traerTorneo(idTorneo);
         List<Ganador> ganadores = new ArrayList<Ganador>();
@@ -231,7 +231,6 @@ public class Sistema {
         return ganadores;
     }
 
-    // Búsqueda de entrenadores por táctica
     public List<Entrenador> busquedaEntrenadoresPorTactica(String tacticaPreferida) {
         List<Entrenador> listAux = new ArrayList<Entrenador>();
         for (int g = 0; g < lstEntrenadores.size(); g++) {
@@ -242,7 +241,7 @@ public class Sistema {
         return listAux;
     }
 
-    // Búsqueda de jugadores por fecha de nacimiento
+
     public List<Jugador> jugadoresFechaNacimento(LocalDate fecha1, LocalDate fecha2) {
         List<Jugador> listAux = new ArrayList<Jugador>();
         for (int g = 0; g < lstJugadores.size(); g++) {
