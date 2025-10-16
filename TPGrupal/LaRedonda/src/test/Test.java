@@ -11,11 +11,11 @@ public class Test {
         Sistema sistema = new Sistema();
 
         // --- 1) Agrego entrenadores ---
-        boolean ok = sistema.agregarEntrenador("Juan", "Perez", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita");
-        System.out.println("agregarEntrenador Juan Perez -> " + ok);
+        System.out.println(sistema.agregarEntrenador("Juan", "Perez", 37969779, LocalDate.of(1993, 12, 10), "estrategiaFavorita"));
+        System.out.println("agregarEntrenador Juan Perez" );
 
-        ok = sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles");
-        System.out.println("agregarEntrenador Roberto Ruiz -> " + ok);
+        System.out.println(sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
+        System.out.println("agregarEntrenador Roberto Ruiz");
 
         // Traigo referencias seguras
         Entrenador entrenador1 = sistema.traerEntrenador(1);
@@ -24,11 +24,26 @@ public class Test {
         if (entrenador1 == null || entrenador2 == null) {
             System.out.println("Error: no se encontraron entrenadores esperados.");
         }
-
+        /* Caso de Prueba: Torneo “Clausura 2025”
+        Torneo
+       • ID: 1
+       • Código: T001
+       • Nombre: Torneo Clausura 2025
+       • Temporada: 2025
+       • Fecha inicio: 2025-10-01
+       • Fecha fin: 2025-10-14
+       • Participantes: 4 equipos (Leones, Tigres, Halcones, Lobos)
+       • Partidos: todos contra todos (6 partidos en total)*/
         // --- 2) Creo un torneo ---
-        ok = sistema.agregarTorneo(1, "Mundial", "1", null, null,
-                LocalDate.of(2025, 3, 3), LocalDate.of(2025, 3, 3), null);
-        System.out.println("agregarTorneo(1, Mundial) -> " + ok);
+        
+        /* public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+                                 LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {*/
+        System.out.println(sistema.agregarTorneo(1, "Clausura 2025","2025",null, null,LocalDate.of(2025, 10, 1), LocalDate.of(2025, 3, 3), null));
+        System.out.println("agregarTorneo(1, Mundial)");
+        
+        
+        
+        
 
         Torneo torneo = sistema.traerTorneo(1);
         if (torneo == null) {
@@ -54,9 +69,9 @@ public class Test {
         System.out.println("agregarPartido Estadio Principal -> " + addPartido);
 
         // --- 5) Agrego jugador y pruebo eliminación ---
-        ok = sistema.agregarJugador("Nombre", "Apellido", 11111,
-                LocalDate.of(2000, 12, 3), 120.f, 120.f, "1", 2);
-        System.out.println("agregarJugador Nombre Apellido -> " + ok);
+        System.out.println( sistema.agregarJugador("Nombre", "Apellido", 11111,
+                LocalDate.of(2000, 12, 3), 120.f, 120.f, "1", 2));
+        System.out.println("agregarJugador Nombre Apellido ");
 
         Jugador j1 = sistema.traerJugador(1);
         if (j1 != null) {
@@ -74,8 +89,8 @@ public class Test {
         }
 
         // --- 6) Vuelvo a agregar entrenador y lo elimino ---
-        ok = sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles");
-        System.out.println("re-agregarEntrenador Roberto Ruiz -> " + ok);
+        System.out.println(sistema.agregarEntrenador("Roberto", "Ruiz", 1212121, LocalDate.of(2012, 9, 3), "metergoles"));
+        System.out.println("re-agregarEntrenador Roberto Ruiz " );
 
         try {
             boolean elimEntr = sistema.eliminarEntrenador(1);
@@ -155,6 +170,15 @@ public class Test {
             posA++;
         }
 
-        
+       /* Caso de Prueba: Torneo “Clausura 2025”
+ Torneo
+• ID: 1
+• Código: T001
+• Nombre: Torneo Clausura 2025
+• Temporada: 2025
+• Fecha inicio: 2025-10-01
+• Fecha fin: 2025-10-14
+• Participantes: 4 equipos (Leones, Tigres, Halcones, Lobos)
+• Partidos: todos contra todos (6 partidos en total)*/ 
     }
 }
