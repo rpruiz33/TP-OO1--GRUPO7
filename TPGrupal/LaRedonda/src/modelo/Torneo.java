@@ -272,51 +272,40 @@ public class Torneo {
 
     
     public ArrayList<Asistencia> generarTablaAsistidores() {
-        ArrayList<Asistencia> tabla = new ArrayList<Asistencia>();
+        ArrayList<Asistencia> tabla = new ArrayList<>();
 
-        for (int i = 0; i < lstPartidos.size(); i++) {
-            Partido partido = lstPartidos.get(i);
-            ArrayList<EstadisticaParticipacionPartido> estadisticas = partido.getEstadisticas();
-            if (estadisticas == null) continue;
+        // Recorro todos los partidos del torneo
+        for (Partido partido : lstPartidos) {
+            if (partido.getListParticipacionPartido() != null) {
+                for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
+                    Jugador jugador = pp.getJugador();
+                    int asistencias = pp.getAsistencias();
 
-            for (int j = 0; j < estadisticas.size(); j++) {
-                EstadisticaParticipacionPartido est = estadisticas.get(j);
-                if (est.getListJugadorJugo() == null) continue;
-
-                for (int k = 0; k < est.getListJugadorJugo().size(); k++) {
-                    Jugador jugador = est.getListJugadorJugo().get(k);
+                    // Busco si el jugador ya está en la tabla
                     Asistencia existente = null;
-                    for (int m = 0; m < tabla.size(); m++) {
-                        if (tabla.get(m).getJugador().equals(jugador)) {
-                            existente = tabla.get(m);
+                    for (Asistencia a : tabla) {
+                        if (a.getJugador().equals(jugador)) {
+                            existente = a;
                             break;
                         }
                     }
 
-                    if (existente != null) {
-                        existente.setAsistencias(
-                            existente.getAsistencias() + est.getAsistenciaParitodo()
-                        );
+                    // Si no existe, lo agrego; si sí existe, sumo asistencias
+                    if (existente == null) {
+                        tabla.add(new Asistencia(jugador, asistencias));
                     } else {
-                        tabla.add(new Asistencia(jugador, est.getAsistenciaParitodo()));
+                        existente.setAsistencias(existente.getAsistencias() + asistencias);
                     }
                 }
             }
         }
 
-        
-        for (int i = 0; i < tabla.size() - 1; i++) {
-            for (int j = i + 1; j < tabla.size(); j++) {
-                if (tabla.get(j).getAsistencias() > tabla.get(i).getAsistencias()) {
-                    Asistencia temp = tabla.get(i);
-                    tabla.set(i, tabla.get(j));
-                    tabla.set(j, temp);
-                }
-            }
-        }
+        // Ordeno la tabla de mayor a menor asistencia
+        tabla.sort((a1, a2) -> Integer.compare(a2.getAsistencias(), a1.getAsistencias()));
 
         return tabla;
     }
+
 
     @Override
     public String toString() {

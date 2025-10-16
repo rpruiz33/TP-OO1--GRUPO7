@@ -2,6 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Sistema {
@@ -10,6 +11,7 @@ public class Sistema {
     private List<Jugador> lstJugadores;
     private List<Entrenador> lstEntrenadores;
     private List<Torneo> lstTorneos;
+    private List<Asistencia> lstAsistencias; // 👈 NUEVO
 
     public Sistema() {
         super();
@@ -17,44 +19,40 @@ public class Sistema {
         this.lstJugadores = new ArrayList<Jugador>();
         this.lstEntrenadores = new ArrayList<Entrenador>();
         this.lstTorneos = new ArrayList<Torneo>();
+        this.lstAsistencias = new ArrayList<Asistencia>(); // 👈 NUEVO
     }
 
+    // ======================  ASISTENCIAS  ========================= //
 
+    public void registrarAsistencia(Jugador jugador) {
+        Asistencia asistencia = buscarAsistenciaPorJugador(jugador);
+        if (asistencia == null) {
+            lstAsistencias.add(new Asistencia(jugador, 1));
+        } else {
+            asistencia.setAsistencias(asistencia.getAsistencias() + 1);
+        }
+    }
 
-    public List<Partido> getLstPartidos() {
-		return lstPartidos;
-	}
+    private Asistencia buscarAsistenciaPorJugador(Jugador jugador) {
+        for (Asistencia a : lstAsistencias) {
+            if (a.getJugador().equals(jugador)) {
+                return a;
+            }
+        }
+        return null;
+    }
 
-	public void setLstPartidos(List<Partido> lstPartidos) {
-		this.lstPartidos = lstPartidos;
-	}
+    public List<Asistencia> traerTablaAsistencias() {
+        return lstAsistencias;
+    }
 
-	public List<Jugador> getLstJugadores() {
-		return lstJugadores;
-	}
+    public List<Asistencia> traerTablaAsistenciasOrdenada() {
+        List<Asistencia> copia = new ArrayList<>(lstAsistencias);
+        copia.sort(Comparator.comparingInt(Asistencia::getAsistencias).reversed());
+        return copia;
+    }
 
-	public void setLstJugadores(List<Jugador> lstJugadores) {
-		this.lstJugadores = lstJugadores;
-	}
-
-	public List<Entrenador> getLstEntrenadores() {
-		return lstEntrenadores;
-	}
-
-	public void setLstEntrenadores(List<Entrenador> lstEntrenadores) {
-		this.lstEntrenadores = lstEntrenadores;
-	}
-
-	public List<Torneo> getLstTorneos() {
-		return lstTorneos;
-	}
-
-	public void setLstTorneos(List<Torneo> lstTorneos) {
-		this.lstTorneos = lstTorneos;
-	}
-
-
-
+    // ===================  PARTIDOS  =================== //
 
     public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
         int id = 1;
@@ -82,17 +80,16 @@ public class Sistema {
         return aux;
     }
 
-
-    
     public boolean eliminarPartido(int idPartido) throws Exception {
         Partido aux = traerPartido(idPartido);
         if (aux == null) {
-        	throw new Exception("El partido no existe");
+            throw new Exception("El partido no existe");
         }
         return lstPartidos.remove(aux);
     }
 
-    
+    // ===================  JUGADORES  =================== //
+
     public boolean agregarJugador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
                                   float peso, float estatura, String posicion, int numCamiseta) {
         int id = 1;
@@ -103,7 +100,6 @@ public class Sistema {
         return lstJugadores.add(j);
     }
 
-    
     public Jugador traerJugador(int idJugador) {
         Jugador aux = null;
         int i = 0;
@@ -117,20 +113,18 @@ public class Sistema {
                 i++;
             }
         }
-
         return aux;
     }
 
-
-    
     public boolean eliminarJugador(int idJugador) throws Exception {
         Jugador aux = traerJugador(idJugador);
         if (aux == null) {
-        	throw new Exception("El jugador no existe");
+            throw new Exception("El jugador no existe");
         }
         return lstJugadores.remove(aux);
     }
 
+    // ===================  ENTRENADORES  =================== //
 
     public boolean agregarEntrenador(String nombre, String apellido, int dni, LocalDate fechaNacimiento,
                                      String estrategiaFavorita) {
@@ -141,7 +135,6 @@ public class Sistema {
         Entrenador e = new Entrenador(id, nombre, apellido, dni, fechaNacimiento, estrategiaFavorita);
         return lstEntrenadores.add(e);
     }
-
 
     public Entrenador traerEntrenador(int idEntrenador) {
         Entrenador aux = null;
@@ -160,17 +153,16 @@ public class Sistema {
         return aux;
     }
 
-
-    
     public boolean eliminarEntrenador(int idEntrenador) throws Exception {
         Entrenador aux = traerEntrenador(idEntrenador);
         if (aux == null) {
-        	throw new Exception("El entrenador no existe");
+            throw new Exception("El entrenador no existe");
         }
-        	return lstEntrenadores.remove(aux);
+        return lstEntrenadores.remove(aux);
     }
 
-   
+    // ===================  TORNEOS  =================== //
+
     public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
                                  LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {
         int id1 = 1;
@@ -181,7 +173,6 @@ public class Sistema {
         return lstTorneos.add(t);
     }
 
- 
     public Torneo traerTorneo(int idTorneo) {
         Torneo aux = null;
         int i = 0;
@@ -199,8 +190,6 @@ public class Sistema {
         return aux;
     }
 
-
-
     public boolean eliminarTorneo(int idTorneo) throws Exception {
         Torneo aux = traerTorneo(idTorneo);
         if (aux == null) throw new Exception("El torneo no existe");
@@ -208,28 +197,6 @@ public class Sistema {
     }
 
 
-    public List<Ganador> traerTorneoPorFecha(int idTorneo, LocalDate fecha) {
-        Torneo taux = this.traerTorneo(idTorneo);
-        List<Ganador> ganadores = new ArrayList<Ganador>();
-
-        if (taux != null) {
-            for (int j = 0; j < taux.getLstPartidos().size(); j++) {
-                Partido partido = taux.getLstPartidos().get(j);
-                if (partido.getFechaPartido().equals(fecha)) {
-                    if (partido.getListParticipacionPartido().size() >= 2) {
-                        int golesLocal = partido.getListParticipacionPartido().get(0).getGoles();
-                        int golesVisitante = partido.getListParticipacionPartido().get(1).getGoles();
-                        if (golesLocal > golesVisitante) {
-                            ganadores.add(new Ganador(fecha, partido.getEquipoLocal(), golesLocal));
-                        } else if (golesVisitante > golesLocal) {
-                            ganadores.add(new Ganador(fecha, partido.getEquipoVisitante(), golesVisitante));
-                        }
-                    }
-                }
-            }
-        }
-        return ganadores;
-    }
 
     public List<Entrenador> busquedaEntrenadoresPorTactica(String tacticaPreferida) {
         List<Entrenador> listAux = new ArrayList<Entrenador>();
@@ -241,7 +208,6 @@ public class Sistema {
         return listAux;
     }
 
-
     public List<Jugador> jugadoresFechaNacimento(LocalDate fecha1, LocalDate fecha2) {
         List<Jugador> listAux = new ArrayList<Jugador>();
         for (int g = 0; g < lstJugadores.size(); g++) {
@@ -251,6 +217,19 @@ public class Sistema {
             }
         }
         return listAux;
+    }
+
+    public void mostrarTablaAsistidores() {
+        if (lstAsistencias.isEmpty()) {
+            System.out.println("No hay asistencias registradas.");
+        } else {
+            System.out.println("===TABLA DE ASISTIDORES ===");
+            for (Asistencia a : lstAsistencias) {
+                System.out.println("Jugador: " + a.getJugador().getNombre() + " " 
+                                   + a.getJugador().getApellido() 
+                                   + " | Asistencias: " + a.getAsistencias());
+            }
+        }
     }
 
 }
