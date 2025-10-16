@@ -19,20 +19,43 @@ public class Sistema {
         this.lstTorneos = new ArrayList<Torneo>();
     }
 
-    // Getters y Setters
-    public List<Torneo> getLstTorneos() { return lstTorneos; }
-    public void setLstTorneos(List<Torneo> lstTorneos) { this.lstTorneos = lstTorneos; }
 
-    public List<Partido> getLstPartidos() { return lstPartidos; }
-    public void setLstPartidos(List<Partido> lstPartidos) { this.lstPartidos = lstPartidos; }
 
-    public List<Jugador> getLstJugadores() { return lstJugadores; }
-    public void setLstJugadores(List<Jugador> lstJugadores) { this.lstJugadores = lstJugadores; }
+    public List<Partido> getLstPartidos() {
+		return lstPartidos;
+	}
 
-    public List<Entrenador> getLstEntrenadores() { return lstEntrenadores; }
-    public void setLstEntrenadores(List<Entrenador> lstEntrenadores) { this.lstEntrenadores = lstEntrenadores; }
+	public void setLstPartidos(List<Partido> lstPartidos) {
+		this.lstPartidos = lstPartidos;
+	}
 
-    // Agregar partido
+	public List<Jugador> getLstJugadores() {
+		return lstJugadores;
+	}
+
+	public void setLstJugadores(List<Jugador> lstJugadores) {
+		this.lstJugadores = lstJugadores;
+	}
+
+	public List<Entrenador> getLstEntrenadores() {
+		return lstEntrenadores;
+	}
+
+	public void setLstEntrenadores(List<Entrenador> lstEntrenadores) {
+		this.lstEntrenadores = lstEntrenadores;
+	}
+
+	public List<Torneo> getLstTorneos() {
+		return lstTorneos;
+	}
+
+	public void setLstTorneos(List<Torneo> lstTorneos) {
+		this.lstTorneos = lstTorneos;
+	}
+
+
+
+	// Agregar partido
     public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
         int id = 1;
         if (lstPartidos.size() > 0) {
@@ -42,22 +65,30 @@ public class Sistema {
         return lstPartidos.add(p);
     }
 
-    // Traer partido
     public Partido traerPartido(int idPartido) {
         Partido aux = null;
-        for (int i = 0; i < lstPartidos.size(); i++) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < lstPartidos.size() && !encontrado) {
             if (lstPartidos.get(i).getId() == idPartido) {
                 aux = lstPartidos.get(i);
-                break;
+                encontrado = true;
+            } else {
+                i++;
             }
         }
+
         return aux;
     }
+
 
     // Eliminar partido
     public boolean eliminarPartido(int idPartido) throws Exception {
         Partido aux = traerPartido(idPartido);
-        if (aux == null) throw new Exception("El partido no existe");
+        if (aux == null) {
+        	throw new Exception("El partido no existe");
+        }
         return lstPartidos.remove(aux);
     }
 
@@ -72,22 +103,31 @@ public class Sistema {
         return lstJugadores.add(j);
     }
 
-    // Traer jugador
+    
     public Jugador traerJugador(int idJugador) {
         Jugador aux = null;
-        for (int i = 0; i < lstJugadores.size(); i++) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < lstJugadores.size() && !encontrado) {
             if (lstJugadores.get(i).getId() == idJugador) {
                 aux = lstJugadores.get(i);
-                break;
+                encontrado = true;
+            } else {
+                i++;
             }
         }
+
         return aux;
     }
 
-    // Eliminar jugador
+
+    
     public boolean eliminarJugador(int idJugador) throws Exception {
         Jugador aux = traerJugador(idJugador);
-        if (aux == null) throw new Exception("El jugador no existe");
+        if (aux == null) {
+        	throw new Exception("El jugador no existe");
+        }
         return lstJugadores.remove(aux);
     }
 
@@ -105,20 +145,29 @@ public class Sistema {
     // Traer entrenador
     public Entrenador traerEntrenador(int idEntrenador) {
         Entrenador aux = null;
-        for (int i = 0; i < lstEntrenadores.size(); i++) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < lstEntrenadores.size() && !encontrado) {
             if (lstEntrenadores.get(i).getId() == idEntrenador) {
                 aux = lstEntrenadores.get(i);
-                break;
+                encontrado = true;
+            } else {
+                i++;
             }
         }
+
         return aux;
     }
 
-    // Eliminar entrenador
+
+    
     public boolean eliminarEntrenador(int idEntrenador) throws Exception {
         Entrenador aux = traerEntrenador(idEntrenador);
-        if (aux == null) throw new Exception("El entrenador no existe");
-        return lstEntrenadores.remove(aux);
+        if (aux == null) {
+        	throw new Exception("El entrenador no existe");
+        }
+        	return lstEntrenadores.remove(aux);
     }
 
     // Agregar torneo
@@ -132,17 +181,24 @@ public class Sistema {
         return lstTorneos.add(t);
     }
 
-    // Traer torneo
+ 
     public Torneo traerTorneo(int idTorneo) {
         Torneo aux = null;
-        for (int i = 0; i < lstTorneos.size(); i++) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < lstTorneos.size() && !encontrado) {
             if (lstTorneos.get(i).getId() == idTorneo) {
                 aux = lstTorneos.get(i);
-                break;
+                encontrado = true;
+            } else {
+                i++;
             }
         }
+
         return aux;
     }
+
 
     // Eliminar torneo
     public boolean eliminarTorneo(int idTorneo) throws Exception {
