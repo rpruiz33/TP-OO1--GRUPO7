@@ -79,14 +79,14 @@ public class Test {
         System.out.println("Jugadores agregados a Lobos.\n");
 
         // ========================
-        // 5. Crear partidos y estadísticas
+        // 5. Crear partidos y estadísticas con asistencias reales
         // ========================
         System.out.println("-- Agregando partidos y estadísticas --");
 
         // Partido 1: Leones 2 - 1 Tigres
         clausura2025.agregarPartido("Estadio Central", leones, tigres, LocalDate.of(2025,10,10));
         Partido p1 = clausura2025.traerPartido(1);
-        p1.agregarParticipacion(leones.getLstJugadores().get(0),1,0,90); // Juan Pérez
+        p1.agregarParticipacion(leones.getLstJugadores().get(0),1,1,90); // Juan Pérez, asistido por Agustín Torres
         p1.agregarParticipacion(leones.getLstJugadores().get(4),1,0,85); // Agustín Torres
         p1.agregarParticipacion(tigres.getLstJugadores().get(3),1,0,90); // Matías Vera
         System.out.println("Partido 1 agregado con goles y asistencias.");
@@ -94,21 +94,21 @@ public class Test {
         // Partido 2: Halcones 1 - 1 Lobos
         clausura2025.agregarPartido("Estadio Norte", halcones, lobos, LocalDate.of(2025,10,17));
         Partido p2 = clausura2025.traerPartido(2);
-        p2.agregarParticipacion(halcones.getLstJugadores().get(3),1,0,90); // Lautaro
-        p2.agregarParticipacion(lobos.getLstJugadores().get(3),1,0,90); // Sebastián Luna
+        p2.agregarParticipacion(halcones.getLstJugadores().get(3),1,1,90); // Lautaro Fernández, asistido por Gonzalo Rivas
+        p2.agregarParticipacion(lobos.getLstJugadores().get(3),1,1,90); // Sebastián Luna, asistido por Enzo Correa
         System.out.println("Partido 2 agregado con goles y asistencias.");
 
         // Partido 3: Leones 3 - 0 Halcones
         clausura2025.agregarPartido("Estadio Central", leones, halcones, LocalDate.of(2025,10,24));
         Partido p3 = clausura2025.traerPartido(3);
-        p3.agregarParticipacion(leones.getLstJugadores().get(0),2,0,90); // Juan Pérez
+        p3.agregarParticipacion(leones.getLstJugadores().get(0),2,1,90); // Juan Pérez, asistido por Agustín Torres
         p3.agregarParticipacion(leones.getLstJugadores().get(4),1,0,90); // Agustín Torres
         System.out.println("Partido 3 agregado con goles y asistencias.");
 
         // Partido 4: Tigres 0 - 2 Lobos
         clausura2025.agregarPartido("Estadio Sur", tigres, lobos, LocalDate.of(2025,10,31));
         Partido p4 = clausura2025.traerPartido(4);
-        p4.agregarParticipacion(lobos.getLstJugadores().get(3),1,0,90); // Sebastián Luna
+        p4.agregarParticipacion(lobos.getLstJugadores().get(3),1,1,90); // Sebastián Luna, asistido por Enzo Correa
         p4.agregarParticipacion(lobos.getLstJugadores().get(4),1,0,90); // Enzo Correa
         System.out.println("Partido 4 agregado con goles y asistencias.");
 
@@ -116,7 +116,7 @@ public class Test {
         clausura2025.agregarPartido("Estadio Central", leones, lobos, LocalDate.of(2025,11,7));
         Partido p5 = clausura2025.traerPartido(5);
         p5.agregarParticipacion(leones.getLstJugadores().get(4),1,0,90); // Agustín Torres
-        p5.agregarParticipacion(lobos.getLstJugadores().get(3),2,0,80); // Sebastián Luna
+        p5.agregarParticipacion(lobos.getLstJugadores().get(3),2,1,80); // Sebastián Luna, asistido por Enzo Correa
         p5.agregarParticipacion(lobos.getLstJugadores().get(4),1,0,90); // Enzo Correa
         System.out.println("Partido 5 agregado con goles y asistencias.");
 
@@ -124,9 +124,9 @@ public class Test {
         clausura2025.agregarPartido("Estadio Sur", tigres, halcones, LocalDate.of(2025,11,14));
         Partido p6 = clausura2025.traerPartido(6);
         p6.agregarParticipacion(tigres.getLstJugadores().get(2),1,0,80); // Rodrigo Sosa
-        p6.agregarParticipacion(tigres.getLstJugadores().get(3),1,0,90); // Matías Vera
+        p6.agregarParticipacion(tigres.getLstJugadores().get(3),1,1,90); // Matías Vera, asistido por Rodrigo Sosa
         p6.agregarParticipacion(halcones.getLstJugadores().get(2),1,0,85); // Gonzalo Rivas
-        p6.agregarParticipacion(halcones.getLstJugadores().get(3),1,0,90); // Lautaro Fernández
+        p6.agregarParticipacion(halcones.getLstJugadores().get(3),1,1,90); // Lautaro Fernández, asistido por Gonzalo Rivas
         System.out.println("Partido 6 agregado con goles y asistencias.\n");
 
         // ========================

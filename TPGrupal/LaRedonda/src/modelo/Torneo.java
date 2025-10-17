@@ -205,12 +205,27 @@ public class Torneo {
             int golesLocal = 0;
             int golesVisitante = 0;
 
-            // Sumar goles de los jugadores
             for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
-                if (local.getLstJugadores().contains(pp.getJugador())) {
-                    golesLocal += pp.getGoles();
-                } else if (visitante.getLstJugadores().contains(pp.getJugador())) {
-                    golesVisitante += pp.getGoles();
+                boolean encontradoLocal = false;
+                int i = 0;
+                while (i < local.getLstJugadores().size() && !encontradoLocal) {
+                    if (local.getLstJugadores().get(i).equals(pp.getJugador())) {
+                        golesLocal += pp.getGoles();
+                        encontradoLocal = true;
+                    }
+                    i++;
+                }
+
+                if (!encontradoLocal) {
+                    boolean encontradoVisitante = false;
+                    int j = 0;
+                    while (j < visitante.getLstJugadores().size() && !encontradoVisitante) {
+                        if (visitante.getLstJugadores().get(j).equals(pp.getJugador())) {
+                            golesVisitante += pp.getGoles();
+                            encontradoVisitante = true;
+                        }
+                        j++;
+                    }
                 }
             }
 
@@ -225,11 +240,11 @@ public class Torneo {
             if (posVisitante == null) { posVisitante = new Posicion(visitante, 0); tabla.add(posVisitante); }
 
             if (ganador != null) {
-                if (ganador.equals(local)) posLocal.setPuntos(posLocal.getPuntos() + 3);
-                else posVisitante.setPuntos(posVisitante.getPuntos() + 3);
-            } else { // Empate
-                posLocal.setPuntos(posLocal.getPuntos() + 1);
-                posVisitante.setPuntos(posVisitante.getPuntos() + 1);
+                if (ganador.equals(local)) posLocal.setPuntos(3);
+                else posVisitante.setPuntos(3);
+            } else {
+                posLocal.setPuntos(1);
+                posVisitante.setPuntos(1);
             }
         }
 
@@ -242,12 +257,23 @@ public class Torneo {
 
 
 
+
     private Posicion buscarPosicion(List<Posicion> tabla, Equipo equipo) {
-        for (Posicion p : tabla) {
-            if (p.getEquipo().equals(equipo)) return p;
+        Posicion pb = null;
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < tabla.size() && !encontrado) {
+            if (tabla.get(i).getEquipo().equals(equipo)) {
+                pb = tabla.get(i);
+                encontrado = true;
+            }
+            i++;
         }
-        return null;
+
+        return pb;
     }
+
 
     // ---- Tabla de goleadores ----
     public List<Goleador> generarTablaGoleadores() {
@@ -259,11 +285,14 @@ public class Torneo {
                 int goles = pp.getGoles();
 
                 Goleador encontrado = null;
-                for (Goleador g : tabla) {
-                    if (g.getJugador().equals(jugador)) {
-                        encontrado = g;
-                        break;
+                int i = 0;
+                boolean hallado = false;
+                while (i < tabla.size() && !hallado) {
+                    if (tabla.get(i).getJugador().equals(jugador)) {
+                        encontrado = tabla.get(i);
+                        hallado = true;
                     }
+                    i++;
                 }
 
                 if (encontrado != null) {
@@ -280,7 +309,6 @@ public class Torneo {
         return tabla;
     }
 
-    // ---- Tabla de asistencias ----
     public List<Asistencia> generarTablaAsistidores() {
         List<Asistencia> tabla = new ArrayList<>();
 
@@ -290,11 +318,14 @@ public class Torneo {
                 int asistencias = pp.getAsistencias();
 
                 Asistencia existente = null;
-                for (Asistencia a : tabla) {
-                    if (a.getJugador().equals(jugador)) {
-                        existente = a;
-                        break;
+                int i = 0;
+                boolean hallado = false;
+                while (i < tabla.size() && !hallado) {
+                    if (tabla.get(i).getJugador().equals(jugador)) {
+                        existente = tabla.get(i);
+                        hallado = true;
                     }
+                    i++;
                 }
 
                 if (existente != null) {
@@ -310,6 +341,7 @@ public class Torneo {
 
         return tabla;
     }
+
 
     @Override
     public String toString() {
