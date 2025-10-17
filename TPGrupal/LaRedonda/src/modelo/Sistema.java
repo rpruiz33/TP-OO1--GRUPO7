@@ -163,13 +163,13 @@ public class Sistema {
 
     // ===================  TORNEOS  =================== //
 
-    public boolean agregarTorneo(int id, String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
+    public boolean agregarTorneo(int id, String codigo,String nombre, String temporada, List<Equipo> lstEquipos, List<Partido> lstPartidos,
                                  LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {
         int id1 = 1;
         if (lstTorneos.size() > 0) {
             id1 = lstTorneos.get(lstTorneos.size() - 1).getId() + 1;
         }
-        Torneo t = new Torneo(id1, nombre, temporada, fechaDeInicio, fechaDeFinalizacion, equipoGanador);
+        Torneo t = new Torneo(id1,codigo, nombre, temporada, fechaDeInicio, fechaDeFinalizacion);
         return lstTorneos.add(t);
     }
 

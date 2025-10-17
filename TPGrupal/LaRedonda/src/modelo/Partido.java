@@ -77,14 +77,14 @@ public class Partido {
     public List<ParticipacionPartido> getListParticipacionPartido() {
         return listParticipacionPartido;
     }
-    public boolean agregarParticipacion(Jugador jugador, int goles, int asistencias, int minutosJugados) {
+    // Agregar participación del jugador
+    public boolean agregarParticipacion(Jugador jugador, int goles, int asistencias,int minutosJugados) {
         if (jugador == null) return false;
 
-        ParticipacionPartido participacion = new ParticipacionPartido(jugador,goles);
-
+        // Creamos la participación con goles, asistencias y minutos
+        ParticipacionPartido participacion = new ParticipacionPartido(jugador, goles, asistencias, minutosJugados);
         return listParticipacionPartido.add(participacion);
     }
-    
     
     
 }

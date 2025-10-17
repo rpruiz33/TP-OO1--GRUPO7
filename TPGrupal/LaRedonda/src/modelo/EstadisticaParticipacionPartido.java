@@ -109,7 +109,7 @@ public int totalGolesJugador(Jugador jugador) {
     // Si el jugador participó en este partido, sumamos los goles de este partido
     if (listJugadorJugo.contains(jugador)) {
         totalGoles = golesMetio; // Todos los jugadores en la lista suman los mismos goles en este partido
-        // Si querés individualizar goles por jugador, necesitás otra estructura que lo almacene
+       
     }
     return totalGoles;
 }

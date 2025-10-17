@@ -13,16 +13,15 @@ public class Posicion {
         return equipo;
     }
 
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
     public int getPuntos() {
         return puntos;
     }
 
-    public void sumarPuntos(int p) {
-        this.puntos += p;
-    }
-
-    @Override
-    public String toString() {
-        return equipo.getNombre() + " - Puntos: " + puntos;
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 }

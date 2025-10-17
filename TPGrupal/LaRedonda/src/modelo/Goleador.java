@@ -13,16 +13,15 @@ public class Goleador {
         return jugador;
     }
 
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
     public int getGoles() {
         return goles;
     }
 
-    public void sumarGoles(int g) {
-        this.goles += g;
-    }
-
-    @Override
-    public String toString() {
-        return jugador.getNombre() + " " + jugador.getApellido() + " - " + goles + " goles";
+    public void setGoles(int goles) {
+        this.goles = goles;
     }
 }

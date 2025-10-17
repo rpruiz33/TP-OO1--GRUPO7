@@ -13,105 +13,161 @@ public class Torneo {
     private LocalDate fechaDeInicio;
     private LocalDate fechaDeFinalizacion;
     private Equipo equipoGanador;
+    private String codigo;
 
-    public Torneo(int id, String nombre, String temporada,
-                  LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion, Equipo equipoGanador) {
+    public Torneo(int id, String codigo, String nombre, String temporada,
+                  LocalDate fechaDeInicio, LocalDate fechaDeFinalizacion) {
         this.id = id;
         this.nombre = nombre;
         this.temporada = temporada;
-        this.lstEquipos = new ArrayList<Equipo>();
-        this.lstPartidos = new ArrayList<Partido>();
+        this.lstEquipos = new ArrayList<>();
+        this.lstPartidos = new ArrayList<>();
         this.fechaDeInicio = fechaDeInicio;
         this.fechaDeFinalizacion = fechaDeFinalizacion;
-        this.equipoGanador = equipoGanador;
+        this.codigo = codigo;
     }
-
+    
+    
+    
 
     public int getId() {
 		return id;
 	}
 
+
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
+
 
 	public String getNombre() {
 		return nombre;
 	}
 
+
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+
 
 	public String getTemporada() {
 		return temporada;
 	}
 
+
+
+
 	public void setTemporada(String temporada) {
 		this.temporada = temporada;
 	}
+
+
+
 
 	public List<Equipo> getLstEquipos() {
 		return lstEquipos;
 	}
 
+
+
+
 	public void setLstEquipos(List<Equipo> lstEquipos) {
 		this.lstEquipos = lstEquipos;
 	}
+
+
+
 
 	public List<Partido> getLstPartidos() {
 		return lstPartidos;
 	}
 
+
+
+
 	public void setLstPartidos(List<Partido> lstPartidos) {
 		this.lstPartidos = lstPartidos;
 	}
+
+
+
 
 	public LocalDate getFechaDeInicio() {
 		return fechaDeInicio;
 	}
 
+
+
+
 	public void setFechaDeInicio(LocalDate fechaDeInicio) {
 		this.fechaDeInicio = fechaDeInicio;
 	}
+
+
+
 
 	public LocalDate getFechaDeFinalizacion() {
 		return fechaDeFinalizacion;
 	}
 
+
+
+
 	public void setFechaDeFinalizacion(LocalDate fechaDeFinalizacion) {
 		this.fechaDeFinalizacion = fechaDeFinalizacion;
 	}
+
+
+
 
 	public Equipo getEquipoGanador() {
 		return equipoGanador;
 	}
 
+
+
+
 	public void setEquipoGanador(Equipo equipoGanador) {
 		this.equipoGanador = equipoGanador;
 	}
+
+
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+
+
+
+	// ---- Métodos de gestión de equipos ----
     public boolean agregarEquipo(String nombre, Entrenador e1, String codigo, LocalDate fechaFundacion) {
         int id = lstEquipos.isEmpty() ? 1 : lstEquipos.get(lstEquipos.size() - 1).getId() + 1;
         return lstEquipos.add(new Equipo(id, nombre, e1, codigo, fechaFundacion));
     }
-    
+
     public Equipo traerEquipo(int idEquipo) {
-        Equipo aux = null;
-        int i = 0;
-        boolean encontrado = false;
-
-        while (i < lstEquipos.size() && !encontrado) {
-            if (lstEquipos.get(i).getId() == idEquipo) {
-                aux = lstEquipos.get(i);
-                encontrado = true;
-            } else {
-                i++;
-            }
+        for (Equipo e : lstEquipos) {
+            if (e.getId() == idEquipo) return e;
         }
-
-        return aux;
+        return null;
     }
-
 
     public boolean eliminarEquipo(int idEquipo) throws Exception {
         Equipo e = traerEquipo(idEquipo);
@@ -119,29 +175,18 @@ public class Torneo {
         return lstEquipos.remove(e);
     }
 
-   
-    public boolean agregarPartido(String estadio, Equipo equipoLocal, Equipo equipoVisitante, LocalDate fechaPartido) {
+    // ---- Métodos de gestión de partidos ----
+    public boolean agregarPartido(String estadio, Equipo local, Equipo visitante, LocalDate fechaPartido) {
         int id = lstPartidos.isEmpty() ? 1 : lstPartidos.get(lstPartidos.size() - 1).getId() + 1;
-        return lstPartidos.add(new Partido(id, estadio, equipoLocal, equipoVisitante, fechaPartido));
+        return lstPartidos.add(new Partido(id, estadio, local, visitante, fechaPartido));
     }
 
     public Partido traerPartido(int idPartido) {
-        Partido aux = null;
-        int i = 0;
-        boolean encontrado = false;
-
-        while (i < lstPartidos.size() && !encontrado) {
-            if (lstPartidos.get(i).getId() == idPartido) {
-                aux = lstPartidos.get(i);
-                encontrado = true;
-            } else {
-                i++;
-            }
+        for (Partido p : lstPartidos) {
+            if (p.getId() == idPartido) return p;
         }
-
-        return aux;
+        return null;
     }
-
 
     public boolean eliminarPartido(int idPartido) throws Exception {
         Partido p = traerPartido(idPartido);
@@ -149,39 +194,23 @@ public class Torneo {
         return lstPartidos.remove(p);
     }
 
-    
+    // ---- Tabla de posiciones ----
     public List<Posicion> generarTablaPosiciones() {
-        List<Posicion> tabla = new ArrayList<Posicion>();
-        int p=0;
-        for (int i = 0; i < lstPartidos.size(); i++) {
-            Partido partido = lstPartidos.get(i);
+        List<Posicion> tabla = new ArrayList<>();
+
+        for (Partido partido : lstPartidos) {
             Equipo local = partido.getEquipoLocal();
             Equipo visitante = partido.getEquipoVisitante();
 
             int golesLocal = 0;
             int golesVisitante = 0;
 
-            for (int j = 0; j < partido.getListParticipacionPartido().size(); j++) {
-                ParticipacionPartido pp = partido.getListParticipacionPartido().get(j);
-         
-                boolean encontradoLocal = false;
-                boolean encontradoVisitante = false;
-                int k=0;
-           while( k < local.getLstJugadores().size()&&!encontradoLocal ) {
-                    if (local.getLstJugadores().get(k).equals(pp.getJugador())) {
-                        golesLocal += pp.getGoles();
-                        encontradoLocal =true;
-                        
-                    }
-                }
-                if (!encontradoLocal) {
-                    while( p < visitante.getLstJugadores().size()) {
-                        if (visitante.getLstJugadores().get(p).equals(pp.getJugador())) {
-                            golesVisitante += pp.getGoles();
-                            
-                        }
-                        p++;
-                    }
+            // Sumar goles de los jugadores
+            for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
+                if (local.getLstJugadores().contains(pp.getJugador())) {
+                    golesLocal += pp.getGoles();
+                } else if (visitante.getLstJugadores().contains(pp.getJugador())) {
+                    golesVisitante += pp.getGoles();
                 }
             }
 
@@ -196,122 +225,95 @@ public class Torneo {
             if (posVisitante == null) { posVisitante = new Posicion(visitante, 0); tabla.add(posVisitante); }
 
             if (ganador != null) {
-                if (ganador.equals(local)) posLocal.sumarPuntos(3);
-                else posVisitante.sumarPuntos(3);
-            } else { 
-                posLocal.sumarPuntos(1);
-                posVisitante.sumarPuntos(1);
+                if (ganador.equals(local)) posLocal.setPuntos(posLocal.getPuntos() + 3);
+                else posVisitante.setPuntos(posVisitante.getPuntos() + 3);
+            } else { // Empate
+                posLocal.setPuntos(posLocal.getPuntos() + 1);
+                posVisitante.setPuntos(posVisitante.getPuntos() + 1);
             }
         }
 
-        
-        for (int i = 0; i < tabla.size() - 1; i++) {
-            for (int j = i + 1; j < tabla.size(); j++) {
-                if (tabla.get(j).getPuntos() > tabla.get(i).getPuntos()) {
-                    Posicion temp = tabla.get(i);
-                    tabla.set(i, tabla.get(j));
-                    tabla.set(j, temp);
-                }
-            }
-        }
+        // Orden descendente por puntos
+        tabla.sort((p1, p2) -> Integer.compare(p2.getPuntos(), p1.getPuntos()));
 
         return tabla;
     }
 
+
+
+
     private Posicion buscarPosicion(List<Posicion> tabla, Equipo equipo) {
-        Posicion pb = null;
-        int i=0;
-        while(i < tabla.size() && pb!=null) {
-            if (tabla.get(i).getEquipo().equals(equipo)) {
-                pb = tabla.get(i);
-                
-            }
-            i++;
+        for (Posicion p : tabla) {
+            if (p.getEquipo().equals(equipo)) return p;
         }
-        return pb;
+        return null;
     }
 
-   
-    public ArrayList<Goleador> generarTablaGoleadores() {
-        ArrayList<Goleador> tabla = new ArrayList<Goleador>();
-        int k=0;
-        for (int i = 0; i < lstPartidos.size(); i++) {
-            Partido partido = lstPartidos.get(i);
-            for (int j = 0; j < partido.getListParticipacionPartido().size(); j++) {
-                ParticipacionPartido pp = partido.getListParticipacionPartido().get(j);
+    // ---- Tabla de goleadores ----
+    public List<Goleador> generarTablaGoleadores() {
+        List<Goleador> tabla = new ArrayList<>();
+
+        for (Partido partido : lstPartidos) {
+            for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
                 Jugador jugador = pp.getJugador();
                 int goles = pp.getGoles();
 
                 Goleador encontrado = null;
-                while  (tabla.size()>k && encontrado!=null) {
-                    if (tabla.get(k).getJugador().getId() == jugador.getId()) {
-                        encontrado = tabla.get(k);
-                        
+                for (Goleador g : tabla) {
+                    if (g.getJugador().equals(jugador)) {
+                        encontrado = g;
+                        break;
                     }
-                    k++;
                 }
 
-                if (encontrado != null) encontrado.sumarGoles(goles);
-                else tabla.add(new Goleador(jugador, goles));
-            }
-        }
-
-        
-        for (int i = 0; i < tabla.size() - 1; i++) {
-            for (int j = i + 1; j < tabla.size(); j++) {
-                if (tabla.get(j).getGoles() > tabla.get(i).getGoles()) {
-                    Goleador temp = tabla.get(i);
-                    tabla.set(i, tabla.get(j));
-                    tabla.set(j, temp);
+                if (encontrado != null) {
+                    encontrado.setGoles(encontrado.getGoles() + goles);
+                } else {
+                    tabla.add(new Goleador(jugador, goles));
                 }
             }
         }
+
+        // Orden descendente por goles
+        tabla.sort((g1, g2) -> Integer.compare(g2.getGoles(), g1.getGoles()));
 
         return tabla;
     }
 
-    
-    public ArrayList<Asistencia> generarTablaAsistidores() {
-        ArrayList<Asistencia> tabla = new ArrayList<>();
+    // ---- Tabla de asistencias ----
+    public List<Asistencia> generarTablaAsistidores() {
+        List<Asistencia> tabla = new ArrayList<>();
 
-        // Recorro todos los partidos del torneo
         for (Partido partido : lstPartidos) {
-            if (partido.getListParticipacionPartido() != null) {
-                for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
-                    Jugador jugador = pp.getJugador();
-                    int asistencias = pp.getAsistencias();
+            for (ParticipacionPartido pp : partido.getListParticipacionPartido()) {
+                Jugador jugador = pp.getJugador();
+                int asistencias = pp.getAsistencias();
 
-                    // Busco si el jugador ya está en la tabla
-                    Asistencia existente = null;
-                    for (Asistencia a : tabla) {
-                        if (a.getJugador().equals(jugador)) {
-                            existente = a;
-                            break;
-                        }
+                Asistencia existente = null;
+                for (Asistencia a : tabla) {
+                    if (a.getJugador().equals(jugador)) {
+                        existente = a;
+                        break;
                     }
+                }
 
-                    // Si no existe, lo agrego; si sí existe, sumo asistencias
-                    if (existente == null) {
-                        tabla.add(new Asistencia(jugador, asistencias));
-                    } else {
-                        existente.setAsistencias(existente.getAsistencias() + asistencias);
-                    }
+                if (existente != null) {
+                    existente.setAsistencias(existente.getAsistencias() + asistencias);
+                } else {
+                    tabla.add(new Asistencia(jugador, asistencias));
                 }
             }
         }
 
-        // Ordeno la tabla de mayor a menor asistencia
+        // Orden descendente por asistencias
         tabla.sort((a1, a2) -> Integer.compare(a2.getAsistencias(), a1.getAsistencias()));
 
         return tabla;
     }
 
-
     @Override
     public String toString() {
         return "Torneo [id=" + id + ", nombre=" + nombre + ", temporada=" + temporada +
-               ", lstEquipos=" + lstEquipos + ", lstPartidos=" + lstPartidos +
-               ", fechaDeInicio=" + fechaDeInicio + ", fechaDeFinalizacion=" + fechaDeFinalizacion +
-               ", equipoGanador=" + equipoGanador + "]";
+               ", fechaInicio=" + fechaDeInicio + ", fechaFin=" + fechaDeFinalizacion + "]";
     }
 }
