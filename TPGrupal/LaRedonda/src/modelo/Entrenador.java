@@ -31,12 +31,10 @@ public class Entrenador extends Persona {
 
 	@Override
 	public String toString() {
-		return "Entrenador [id=" + id + ", EstrategiaFavorita=" + EstrategiaFavorita + ", getId()=" + getId()
-				+ ", getEstrategiaFavorita()=" + getEstrategiaFavorita() + ", getNombre()=" + getNombre()
-				+ ", getApellido()=" + getApellido() + ", getDni()=" + getDni() + ", getFechaNacimiento()="
-				+ getFechaNacimiento() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + "]";
+		return "Entrenador [id=" + id + ", EstrategiaFavorita=" + EstrategiaFavorita + "]";
 	}
+
+
 
 
 	

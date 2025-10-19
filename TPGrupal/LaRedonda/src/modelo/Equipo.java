@@ -88,29 +88,7 @@ public class Equipo {
         return suma;
     }
 
-    @Override
-    public String toString() {
-        String jugadoresStr = "";
-        for (int i = 0; i < lstJugadores.size(); i++) {
-            jugadoresStr += lstJugadores.get(i).toString();
-            if (i < lstJugadores.size() - 1) {
-                jugadoresStr += ", ";
-            }
-        }
-
-        String puntosStr = "";
-        for (int i = 0; i < puntos.size(); i++) {
-            puntosStr += puntos.get(i);
-            if (i < puntos.size() - 1) {
-                puntosStr += ", ";
-            }
-        }
-
-        return "Equipo [id=" + id + ", Nombre=" + Nombre + ", Entrenador=" + Entrenador
-                + ", lstJugadores=[" + jugadoresStr + "], Codigo=" + Codigo
-                + ", fechaFundacion=" + fechaFundacion + ", puntos=[" + puntosStr + "]]";
-    }
-
+   
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -123,6 +101,12 @@ public class Equipo {
     public int hashCode() {
         return Integer.hashCode(id);
     }
+
+	@Override
+	public String toString() {
+		return "Equipo [id=" + id + ", Nombre=" + Nombre + ", Entrenador=" + Entrenador + ", Codigo=" + Codigo
+				+ ", puntos=" + puntos + "]";
+	}
 
 
 

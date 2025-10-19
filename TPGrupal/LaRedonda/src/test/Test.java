@@ -128,7 +128,9 @@ public class Test {
         p6.agregarParticipacion(halcones.getLstJugadores().get(2),1,0,85); // Gonzalo Rivas
         p6.agregarParticipacion(halcones.getLstJugadores().get(3),1,1,90); // Lautaro Fernández, asistido por Gonzalo Rivas
         System.out.println("Partido 6 agregado con goles y asistencias.\n");
-
+        
+        System.out.println(clausura2025.getLstPartidos());
+        
         // ========================
         // 6. Imprimir resultados
         // ========================

@@ -85,7 +85,12 @@ public class Partido {
         ParticipacionPartido participacion = new ParticipacionPartido(jugador, goles, asistencias, minutosJugados);
         return listParticipacionPartido.add(participacion);
     }
+
+	@Override
+	public String toString() {
+		return "Partido [id=" + id + ", estadio=" + estadio + ", equipoLocal=" + equipoLocal + ", equipoVisitante="
+				+ equipoVisitante+"\n"  ;
     
     
 }
-
+}
